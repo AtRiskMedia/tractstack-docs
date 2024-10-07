@@ -90,8 +90,8 @@ export default defineConfig({
           label: "Core Concepts",
           items: [
             {
-              label: "What is a content-driven website?",
-              link: "/concepts/content-driven-website/",
+              label: "Make a website that converts",
+              link: "/concepts/astro/",
             },
             { label: "Pressed by Tract Stack", link: "/concepts/tractstack/" },
           ],
@@ -127,10 +127,7 @@ export default defineConfig({
         },
         {
           label: "Configuration",
-          items: [
-            { label: "Publish Settings", link: "/configuration/publish/" },
-            { label: "Account Settings", link: "/configuration/account/" },
-          ],
+          items: [{ label: "Env Settings", link: "/configuration/env/" }],
           collapsed: true,
         },
       ],

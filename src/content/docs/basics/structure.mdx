@@ -30,7 +30,7 @@ Tract Stack reserves the `t8k` user. You'll use this account when installing (or
 
 </FileTree>
 
-### Each tractstack instance
+### For each Tract Stack instance
 
 Once installed you'll have a new `/home/user` folder. This is where all the magic happens! Everything you'll need to configure can be done via the Story Keep.
 
@@ -39,20 +39,21 @@ Once installed you'll have a new `/home/user` folder. This is where all the magi
 - .env
 - backup/
 - log/
-- releases/
-  - storykeep/
-  - tractstack/
-  - watch/
+- watch/
 - scripts/
 - src/
-  - gatsby-starter-storykeep/
-    - .env.production
-  - tractstack-frontend/
+  - tractstack-storykeep/
+    - public/custom/images/
+    - public/styles/custom.css
+    - src/custom/
+    - src/custom/codehooks.astro
+    - src/custom/HeaderWidget.astro
+    - Dockerfile
+    - config.ts
     - .env
 - srv/
   - public_html/
-    - storykeep/
-    - drupal/
+    - storykeep/images/
   - tractstack-concierge/
     - .env
 
@@ -60,7 +61,7 @@ Once installed you'll have a new `/home/user` folder. This is where all the magi
 
 ### Systemd path unit
 
-During the install process a service gets installed on your system. This is a `build trigger` that watches the `/home/user/releases/watch` folder. It allows a build to be called by the Story Keep.
+During the install process a _service_ gets installed on your system. This is a `build trigger` that watches the `/home/user/releases/watch` folder. It allows a build to be called by the Story Keep.
 
 Note: if you uninstall via the `tractstack-uninstall.sh` script, this service gets removed.
 

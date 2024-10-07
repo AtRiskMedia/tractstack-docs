@@ -3,9 +3,11 @@ title: Installation
 description: Self-hosted recipes on Debian
 ---
 
-Tract Stack is a _full stack_ application. It includes multiple web frontends, a backend, and a sprinkling of server config. If you're up to the challenge we'll provide you with everything required to install and self-host your own Tract Stack! (Commercial use is [encouraged](/start/license/))
+Tract Stack is a _full stack_ application. It includes an astro frontend to serve the web experience, a basic PHP backend "concierge" of sorts with a sprinkling of server config. This guide is based on [Debian Linux](https://www.debian.org/). If you're up to the challenge we'll provide you with everything required to install and self-host your own Tract Stack!
 
-If you are an agency looking to build with Tract Stack, [let's chat](mailto:hello@tractstack.com).
+It is available under the source-available [Functional Source License](/start/license)
+
+Commercial use is [encouraged](/start/license/). If you are an agency looking to build with Tract Stack, [let's chat](mailto:hello@tractstack.com).
 
 :::caution[This is a technical guide]
 If you want Tract Stack as a service, visit [Tract Stack](https://tractstack.com/#pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for managed hosting options.
@@ -38,11 +40,11 @@ If you are running these playbooks remotely, be sure to consult the README on ho
 
 `build_server_t8k.yml` prepares the server for Tract Stack:
 
-- installs [neovim](https://neovim.io/), [git](https://www.git-scm.com/)
+- installs [neovim](https://neovim.io/) (...btw), [git](https://www.git-scm.com/)
 - installs [docker](https://www.docker.com/)
 - activates [Nginx](https://nginx.org/) / [PHP-fpm](https://www.php.net/manual/en/install.fpm.php), [composer](https://getcomposer.org/), [nodejs](https://nodejs.org/) using playbooks maintained by [Jeff Geerling](https://github.com/geerlingguy)
 - installs [yarn](https://yarnpkg.com/) and versioning via [corepack](https://yarnpkg.com/corepack)
-- installs [astro](https://github.com/withastro/astro), [tailwindcss](https://tailwindcss.com/docs/installation), [gatsby](https://www.gatsbyjs.com/) _note: the prototype story keep is written in gatsby and is being ported to astro_
+- installs [astro](https://github.com/withastro/astro), [tailwindcss](https://tailwindcss.com/docs/installation)
 
 Ensure that you've run **both** playbooks.
 
@@ -76,17 +78,8 @@ Log-in or become the `t8k` user.
 Two sub-domains are configured for each Tract Stack during the install process:
 
 - `hello.yourdomain.com` will serve the frontend; this could be a CNAME pointing to `yourdomain.com` -- if you update your primary domain, be sure to set the new domain in your Story Keep
-- `storykeep.hello.yourdomain.com` will serve the backend services; this is also where the current gatsby prototype of the story keep resides
-
+- `storykeep.hello.yourdomain.com` will serve the backend services
   :::
-
-### Specify your domain
-
-In `/home/t8k/.env`, set the `DOMAIN=` to your custom domain.
-
-```bash
-echo DOMAIN=yourdomain.com >> ~/.env
-```
 
 ### Run the install script
 
@@ -103,27 +96,10 @@ sudo ./tractstack-install.sh hello
 
 ### Complete the installation
 
-The install script will take 3-4 minutes. A lot happens. When it's finished you'll still have 2 tasks to complete. All the instructions (and credentials) will be in the terminal. You will need to copy and paste these! Be sure to store them in a secure place afterwards.
+The install script will take 1-2 minutes. A lot happens. When it's finished you're ready to go!
 
-**Note: use an incognito window for this step.** (You shouldn't have to connect to Drupal again, but we recommend using an incognito window when you do. And **remember** to save your password!)
-
-First visit `https://storykeep.hello.yourdomain.com/d` (update with your domain; use the link provided in the terminal) to login to your Drupal backend with the credentials posted in the terminal - username: admin, password: `?`
-
-Then create an oauth consumer by visiting `https://storykeep.hello.yourdomain.com/d/admin/config/services/consumer` (update with your domain; use the link provided in the terminal). Click `+ Add Consumer`.
-
-Enter the following values:
-
-- Label: Builder
-- ClientId: builder
-- New Secret: `?` (copy and paste from the terminal)
-- Scopes: Select builder role
-
-Finally, visit People > `+ Add user` and create yourself an account. **Be sure to give yourself the `Builder` role.**
+All the instructions (and credentials) will be in the terminal. You will need to copy and paste these! Be sure to store them in a secure place afterwards.
 
 ### Enter your Story Keep
 
-Visit `https://storykeep.hello.yourdomain.com/` (update with your domain; use the link provided in the terminal) and log-in with the account you made in the prior step.
-
-:::note
-This is the prototype Story Keep written in Gatsby. It is being ported to Astro with a more fluid UX! Stay tuned.
-:::
+Visit `https://hello.yourdomain.com/storykeep/login?force=true` (update with your domain; use the link provided in the terminal) and log-in with the account you made in the prior step.

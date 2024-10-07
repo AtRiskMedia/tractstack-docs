@@ -11,15 +11,19 @@ Out-of-the-box it's watching where everyone places their attention. It's learnin
 
 There are a variety of event types.
 
-### Glossed / Read
+#### GLOSSED / READ
 
 Each section of every page is a touch point in each visitors' journey. In a privacy-first manner, we'll monitor which content is being glossed over `on screen for 7+ seconds` vs. read `on screen for 42+ seconds`
 
-### Clicked
+#### CLICKED
 
 In a privacy-first manner, we'll monitor which buttons get clicked on.
 
-### Entered
+#### PAGEVIEWED
+
+In a privacy-first manner, we'll monitor which pages get visited.
+
+#### ENTERED
 
 In a privacy-first manner, we'll monitor where traffic arrives from. If it's tagged with [utm params](https://en.wikipedia.org/wiki/UTM_parameters) we'll tag the ensuing visit accordingly.
 
