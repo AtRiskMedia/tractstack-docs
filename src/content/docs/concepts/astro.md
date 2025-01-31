@@ -25,15 +25,15 @@ With the Astro core team commitment to content-driven sites, you can reset assur
 
 Astro is an opinionated web framework.
 
-Many modern javascript frameworks (like Next.js, Remix) nestle in on each client browser. If you visit a website made with such a framework it will download to your browser and run there. This makes great sense for complex web apps. But less so for a content-driven website. Your users want a snappy, smooth experience!
+Many modern javascript frameworks (like Next.js, Remix) nestle in on each client browser. If you visit a website made with such a framework it will download to your browser and run there. This is great for complex web apps. But for a content-driven website? Your users want a snappy, smooth experience!
 
-Older web frameworks (like WordPress) leverage server rendering. If you visit one of these websites, your browser downloads the html + css _pre-rendered_. While this can be very fast (esp. with caching), it's stale and lacks that dynamic snappy feel. It's old sauce.
+Older web frameworks (like WordPress) depend on the web server to generate each web page on request. If you visit one of these websites, the server does it work so your browser can download the html + css _pre-rendered_. While this can be very fast (esp. with caching), it's stale and lacks that dynamic snappy feel. It's old sauce.
 
 With Astro you get the best of both worlds! [Read more](https://docs.astro.build/en/concepts/why-astro/#server-first)
 
 ### Fast by default
 
-That's science! When you optimize the inputs, you get the best output. That Astro core team's commitment to making the web great for content is producing fruit. [Read more](https://docs.astro.build/en/concepts/why-astro/#fast-by-default)
+It's science! When you optimize the inputs, you get the best output. That Astro core team's commitment to making the web great for content is producing fruit. [Read more](https://docs.astro.build/en/concepts/why-astro/#fast-by-default)
 
 ### Easy to use and developer-focused
 

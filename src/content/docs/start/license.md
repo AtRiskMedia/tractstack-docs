@@ -3,7 +3,7 @@ title: Source-Available License
 description: Source-Available under FSL-1.1-MIT
 ---
 
-Tract Stack is released under FSL-1.1-MIT. This is a mostly permissive non-compete license that converts to MIT after two years.
+Tract Stack is released under FSL-1.1-MIT. This is a mostly permissive non-compete license that converts to MIT two years after each release.
 
 ## Why?
 
@@ -15,7 +15,7 @@ _Are you an agency looking to leverage Tract Stack for your clients; an investor
 
 ## Is this open-source?
 
-Technically, no. Not yet. In practical terms you are free to use Tract Stack as though it were MIT open-source. Commercial use is encouraged! It defaults to MIT license in 2 years. In the meantime, the only prohibited use is re-selling "Tract Stack as a Service" without consent.
+Technically, no. Not yet. In practical terms you are free to use Tract Stack as though it were MIT open-source. Commercial use is encouraged! Each release converts to MIT license after two years. In the meantime, the only prohibited use is re-selling "Tract Stack as a Service" without explicit consent.
 
 ## Further reading
 

@@ -13,13 +13,9 @@ If you're up to the challenge we'll provide you with everything required to inst
 If you want Tract Stack as a service, visit [Pricing](https://tractstack.com/pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for managed hosting and kitty "hoteling" options.
 :::
 
-## Prerequisites (recommended)
+## Quick install (for preview)
 
-While Tract Stack can be run as a standalone in a Docker for production installs we offer this guide based on [Debian Linux](https://www.debian.org/) running Nginx with PHP 8.2 FPM, Docker.
-
-### Quick install
-
-For non-production use you don't even need Docker. It will work in `dev` mode just fine!
+For non-production use you don't even need Docker. It will work in `dev` mode just fine via a local-first Turso database.
 
 ```
 pnpm create astro@latest my-tractstack-site --template AtRiskMedia/tractstack-starter/template --typescript strict --install --package-manager pnpm
@@ -27,6 +23,12 @@ pnpm create astro@latest my-tractstack-site --template AtRiskMedia/tractstack-st
 cd my-tractstack-site
 pnpm dev
 ```
+
+## Production install (recommended)
+
+While Tract Stack can be run as a standalone in a Docker for production installs we offer this guide based on [Debian Linux](https://www.debian.org/) running Nginx with PHP 8.2 FPM, Docker.
+
+For a production install you will need a [Turso](https://turso.tech) database url with read &amp; write token. They offer a generous free tier which will be sufficient for most sites. Although we recommend at `hobby` tier for no cold starts and no database archival.
 
 ### Production Install
 
@@ -50,7 +52,7 @@ su - t8k
 git clone https://github.com/AtRiskMedia/tractstack-installer
 ```
 
-#### Production install
+#### Prepare your environment
 
 Log-in or become the `t8k` user.
 
@@ -64,30 +66,28 @@ B2_APPLICATION_KEY=
 ```
 
 :::note
-Two sub-domains are configured for each Tract Stack during the install process:
+Nginx will be configured for you by the install script. Two sub-domains are configured for each Tract Stack during the install process:
 
 - `hello.yourdomain.com` will serve the frontend; this could be a CNAME pointing to `yourdomain.com` -- if you update your primary domain, be sure to set the new domain in your Story Keep
-- `storykeep.hello.yourdomain.com` will serve the backend services
+- `storykeep.hello.yourdomain.com` will serve the backend services (e.g. to trigger a rebuild when required)
   :::
 
 #### Run the install script
 
 Use the `tractstack-install.sh` script to get a new instance of Tract Stack (e.g. 1 website). A new user account and `/home/user` folder will be generated through this process. (If you are running multiple websites, simply repeat the process with a different user name.)
 
-Carefully decide upon a subdomain for this Tract Stack. It will also be used as username on Debian. It **must** be short and text only, no spaces. We'll use `hello` as a default user name/sub-domain.
-
-Once your website is live, you can set-up the subdomains a CNAME records pointing to the primary domain.
-
 ```bash
 cd ~/tractstack-installer/scripts
 sudo ./tractstack-install.sh hello
 ```
 
+*Carefully decide upon a subdomain for this Tract Stack.* It will also be used as username on Debian. It **must** be short and text only, no spaces. We'll use `hello` as a default user name/sub-domain. Once your website is live, you can set-up the subdomains a CNAME records pointing to the primary domain.
+
 #### Complete the installation
 
 The install script will take 1-2 minutes.
 
-All the instructions (and credentials) will be in the terminal. You will need to copy and paste these! Be sure to store them in a secure place afterwards.
+All the instructions (and credentials) will be shown in the terminal. You will need to copy and paste these! Be sure to store them in a secure place afterwards.
 
 #### Enter your Story Keep
 
