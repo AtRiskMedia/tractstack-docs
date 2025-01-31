@@ -1,9 +1,9 @@
 ---
 title: Source-Available License
-description: Source-Available under FSL-1.0-MIT
+description: Source-Available under FSL-1.1-MIT
 ---
 
-Tract Stack is released under FSL-1.0-MIT. This is a mostly permissive non-compete license that converts to MIT after two years.
+Tract Stack is released under FSL-1.1-MIT. This is a mostly permissive non-compete license that converts to MIT after two years.
 
 ## Why?
 

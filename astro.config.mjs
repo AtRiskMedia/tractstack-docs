@@ -101,13 +101,14 @@ export default defineConfig({
           label: "Basics",
           items: [
             { label: "Project structure", link: "/basics/structure/" },
-            { label: "Your story keep", link: "/basics/storykeep/" },
-            { label: "Story fragments", link: "/basics/story-fragments/" },
-            { label: "Panes", link: "/basics/panes/" },
+            { label: "Story Keep", link: "/basics/storykeep/" },
+            { label: "Story Fragments", link: "/basics/story-fragments/" },
+            { label: "Context Pages", link: "/basics/context-pages/" },
             {
-              label: "Content engagements",
+              label: "Engagement Analytics",
               link: "/basics/content-engagements/",
             },
+            { label: "Impressions", link: "/basics/impressions/" },
           ],
           collapsed: true,
         },
@@ -125,15 +126,9 @@ export default defineConfig({
           },
           collapsed: true,
         },
-        {
-          label: "Configuration",
-          items: [{ label: "Env Settings", link: "/configuration/env/" }],
-          collapsed: true,
-        },
-      ],
+     ],
       social: {
         github: "https://github.com/AtRiskMedia/tractstack-docs",
-        "x.com": "https://x.com/AtRiskMedia",
       },
     }),
     tailwind({

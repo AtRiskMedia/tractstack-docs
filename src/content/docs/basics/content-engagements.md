@@ -3,7 +3,7 @@ title: Content engagements
 description: Where authenticity gains traction
 ---
 
-Tract Stack is made for content-driven websites. Where authenticity gains traction.
+Tract Stack is made for building community and farming engagement!
 
 Out-of-the-box it's watching where everyone places their attention. It's learning as readers engage with your site.
 

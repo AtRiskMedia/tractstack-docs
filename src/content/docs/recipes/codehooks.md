@@ -13,31 +13,27 @@ This will require server access.
 
 ### Wire up a new code hook
 
-Your Tract Stack [project](/basics/structure/) has a `~/src/tractstack-frontend/src/custom` folder.
+Your Tract Stack [project](/basics/structure/) has a `~/src/tractstack-storykeep/src/custom` folder.
 
-- edit the `codehooks.tsx` file
+- edit the `CodeHook.astro` file
 
 ```js
-//import Branding from './Branding';
+---
+import type { ResourceDatum } from "@/types";
+import CustomHero from "./CustomHero.astro";
 
-const CodeHook = ({ target }: { target: string }) => {
-  switch (target) {
-    //case `Branding`:
-    //  return <Branding />
-
-    default:
-      console.log(`missed on`, target)
-      return <div />
-  }
+export interface Props {
+  target: string;
+  resources?: ResourceDatum[] | null;
+  options?: string | null;
 }
 
-export default CodeHook;
+const { target /* resources, options */ } = Astro.props;
+
+export const components = {
+  "custom-hero": true,
+};
+---
+
+{target === "custom-hero" ? <CustomHero /> : <div>Code hook not found</div>}
 ```
-
-Define your codehooks here.
-
-### Include this code hook on your page
-
-Full disclosure: the current story keep prototype written in Gatsby doesn't have an easy method to add the codehook; this'll be corrected in the port to astro (soon coming).
-
-But it's fully supported in spite of the UX gap. See the Tract Stack [pricing](https://tractstack.com#pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for an example.

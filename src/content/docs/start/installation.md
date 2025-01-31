@@ -3,52 +3,36 @@ title: Installation
 description: Self-hosted recipes on Debian
 ---
 
-Tract Stack is a _full stack_ application. It includes an astro frontend to serve the web experience, a basic PHP backend "concierge" of sorts with a sprinkling of server config. This guide is based on [Debian Linux](https://www.debian.org/). If you're up to the challenge we'll provide you with everything required to install and self-host your own Tract Stack!
-
-It is available under the source-available [Functional Source License](/start/license)
+Tract Stack is free (as in kitten). If you're able to provide an adequate home, it's yours - made available under the source-available [Functional Source License](/start/license) (only restriction is no re-selling Tract Stack as-a-service.)
 
 Commercial use is [encouraged](/start/license/). If you are an agency looking to build with Tract Stack, [let's chat](mailto:hello@tractstack.com).
 
+If you're up to the challenge we'll provide you with everything required to install and self-host your own Tract Stack!
+
 :::caution[This is a technical guide]
-If you want Tract Stack as a service, visit [Tract Stack](https://tractstack.com/#pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for managed hosting options.
+If you want Tract Stack as a service, visit [Pricing](https://tractstack.com/pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for managed hosting and kitty "hoteling" options.
 :::
 
-## Prerequisites
+## Prerequisites (recommended)
 
-Tract Stack can be self-hosted on [Debian Linux](https://www.debian.org/).
+While Tract Stack can be run as a standalone in a Docker for production installs we offer this guide based on [Debian Linux](https://www.debian.org/) running Nginx with PHP 8.2 FPM, Docker.
 
-- Debian 12 server with sudo access and python-pip3 installed
-- everything else can be installed via ansible playbooks and bash scripts! This includes `CSF`,`Nginx`,`PHP-fpm`,`MariaDB`,`docker`,`nodejs`,`composer`
-- Cloudflare [API credentials](https://certbot-dns-cloudflare.readthedocs.io/en/stable/); note: this is for certbot to generate SSL certs and could be overridden / done manually
+### Quick install
 
-## Before Installation
+For non-production use you don't even need Docker. It will work in `dev` mode just fine!
 
-Tract Stack should run on any VPS with 1-2GB ram. This guide and its scripts are based on Debian 12. No reason it couldn't be ported to other systems.
+```
+pnpm create astro@latest my-tractstack-site --template AtRiskMedia/tractstack-starter/template --typescript strict --install --package-manager pnpm
 
-### Prepare the server
+cd my-tractstack-site
+pnpm dev
+```
 
-In `tractstack-installer` you'll find two ansible playbooks. You'll need to run both.
+### Production Install
 
-_Be sure_ to review the README, esp. about `/templates/*` where you'll set your API keys, SSH keys, MySQL pwd, etc.
+Tract Stack should run on any VPS with 1-2GB ram. This guide and its scripts are based on Debian 12. If you port elsewhere, please let us know!
 
-If you are running these playbooks remotely, be sure to consult the README on how to 'first run' before your SSH keys are installed.
-
-`build_server.yml` initializes the server:
-
-- installs some dependencies and helpers: `vnstat`, `htop`, `rsync`, `zip`, `mutt`, `libwww-perl`, `locate`, `dnsutils`, `wget`, `curl`, `lnav`, `snapd`, `pwgen`, `vim`
-- set-up [ConfigServer Security and Firewall](https://configserver.com/configserver-security-and-firewall/), [MariaDB](https://mariadb.org/), and [Certbot](https://certbot.eff.org/)
-
-`build_server_t8k.yml` prepares the server for Tract Stack:
-
-- installs [neovim](https://neovim.io/) (...btw), [git](https://www.git-scm.com/)
-- installs [docker](https://www.docker.com/)
-- activates [Nginx](https://nginx.org/) / [PHP-fpm](https://www.php.net/manual/en/install.fpm.php), [composer](https://getcomposer.org/), [nodejs](https://nodejs.org/) using playbooks maintained by [Jeff Geerling](https://github.com/geerlingguy)
-- installs [yarn](https://yarnpkg.com/) and versioning via [corepack](https://yarnpkg.com/corepack)
-- installs [astro](https://github.com/withastro/astro), [tailwindcss](https://tailwindcss.com/docs/installation)
-
-Ensure that you've run **both** playbooks.
-
-### Create the t8k user
+#### Create the t8k user
 
 Tract Stack installs itself in the `t8k` user `/home/t8k` folder.
 
@@ -66,13 +50,18 @@ su - t8k
 git clone https://github.com/AtRiskMedia/tractstack-installer
 ```
 
-## Installation
+#### Production install
 
 Log-in or become the `t8k` user.
 
-:::danger
-**TODO** **note for Adon** ... the `tractstack-install.sh` script is hard-coded to tractstack.com; but it's already dynamic for sub-domain (via ZZZZZ sed) so it _could_ be fully dynamic and reference the parent domain from `.env` - in the meantime if you need help override this, email us at [hello@tractstack.com](mailto:hello@tractstack.com).
-:::
+**Set your BASE_URL in ~/tractstack-installer/scripts/tractstack-install.sh**
+
+There is an optional USE_BACKUPS flag to enable. This depends on [Backblack](https://backblaze.com). Create a bucket and a ~/.env.b2 file:
+```
+B2_BUCKET_NAME=
+B2_APPLICATION_KEY_ID=
+B2_APPLICATION_KEY=
+```
 
 :::note
 Two sub-domains are configured for each Tract Stack during the install process:
@@ -81,11 +70,11 @@ Two sub-domains are configured for each Tract Stack during the install process:
 - `storykeep.hello.yourdomain.com` will serve the backend services
   :::
 
-### Run the install script
+#### Run the install script
 
 Use the `tractstack-install.sh` script to get a new instance of Tract Stack (e.g. 1 website). A new user account and `/home/user` folder will be generated through this process. (If you are running multiple websites, simply repeat the process with a different user name.)
 
-Carefully decide upon a subdomain for this Tract Stack. It will also be used as username on Debian. It **must** be short and text only, no spaces. We'll use `hello` as a default.
+Carefully decide upon a subdomain for this Tract Stack. It will also be used as username on Debian. It **must** be short and text only, no spaces. We'll use `hello` as a default user name/sub-domain.
 
 Once your website is live, you can set-up the subdomains a CNAME records pointing to the primary domain.
 
@@ -94,12 +83,12 @@ cd ~/tractstack-installer/scripts
 sudo ./tractstack-install.sh hello
 ```
 
-### Complete the installation
+#### Complete the installation
 
-The install script will take 1-2 minutes. A lot happens. When it's finished you're ready to go!
+The install script will take 1-2 minutes.
 
 All the instructions (and credentials) will be in the terminal. You will need to copy and paste these! Be sure to store them in a secure place afterwards.
 
-### Enter your Story Keep
+#### Enter your Story Keep
 
 Visit `https://hello.yourdomain.com/storykeep/login?force=true` (update with your domain; use the link provided in the terminal) and log-in with the account you made in the prior step.

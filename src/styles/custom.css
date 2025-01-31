@@ -7,21 +7,31 @@
 
 @font-face {
   font-family: "Font-Main";
-  src: url("../fonts/FranklinGothicURW-Boo.woff");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Font-Main";
-  src: url("../fonts/FranklinGothicURW-Med.woff");
-  font-weight: bold;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Font-Action";
-  src: url("../fonts/murizabasic-medium-webfont.woff");
+  src: url("/fonts/Inter-Regular.woff2") format("woff2");
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Font-Main";
+  src: url("/fonts/Inter-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Font-Action";
+  src: url("/fonts/Inter-Black.woff2") format("woff2");
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: var(--font-main);
+  font-family: var(--font-main), Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion) {
+  scroll-behavior: auto;
 }

@@ -6,8 +6,8 @@ description: Your Tract Stack on the server
 import { FileTree } from "@astrojs/starlight/components";
 
 :::tip[Our "Tract Stack as a service" does all this for you]
-Remember, this is a technical guide for self-install.
-If you want Tract Stack as a service, visit [Tract Stack](https://tractstack.com/#pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for managed hosting options.
+You are reading the technical guide for self-install.
+If you want all this handled for you please visit [Tract Stack](https://tractstack.com/#pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for managed hosting options.
 :::
 
 ## Server set-up
@@ -27,6 +27,7 @@ Tract Stack reserves the `t8k` user. You'll use this account when installing (or
 - tractstack-installer/
   - scripts/
   - files/
+- backup/
 
 </FileTree>
 
@@ -37,23 +38,23 @@ Once installed you'll have a new `/home/user` folder. This is where all the magi
 <FileTree>
 
 - .env
-- backup/
 - log/
 - watch/
 - scripts/
+- tmp/
 - src/
+  - tractstack-starter/
   - tractstack-storykeep/
+    - .env
     - public/custom/images/
     - public/styles/custom.css
     - src/custom/
     - src/custom/codehooks.astro
     - src/custom/HeaderWidget.astro
     - Dockerfile
-    - config.ts
-    - .env
 - srv/
   - public_html/
-    - storykeep/images/
+    - storykeep/api/
   - tractstack-concierge/
     - .env
 
@@ -61,15 +62,18 @@ Once installed you'll have a new `/home/user` folder. This is where all the magi
 
 ### Systemd path unit
 
-During the install process a _service_ gets installed on your system. This is a `build trigger` that watches the `/home/user/releases/watch` folder. It allows a build to be called by the Story Keep.
+During the install process a few _services_ get installed on your system. This is a `build trigger` that watches the `/home/user/releases/watch` folder. It allows a build to be called by the Story Keep. Optionally, you may opt to install a backup service that relies on [Backblaze](https://backblaze.com).
 
 Note: if you uninstall via the `tractstack-uninstall.sh` script, this service gets removed.
 
 <FileTree>
 
 - /etc/systemd/system/
-  - t8k-user.path
-  - t8k-user.service
-  - …
+  - t8k-(user).path
+  - t8k-(user).service
+  - t8k-backup.path
+  - t8k-backup.service
+  - t8k-b2sync-(daily|hourly|monthly|weekly).path
+  - t8k-b2sync-(daily|hourly|monthly|weekly).service
 
 </FileTree>
