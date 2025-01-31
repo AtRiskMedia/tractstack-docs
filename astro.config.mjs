@@ -10,7 +10,7 @@ export default defineConfig({
     starlight({
       title: "Tract Stack | Build recipes + docs",
       description:
-        "the SEO-friendly builder for content-driven websites | conversion rate optimization made easy for YouTubers, evangelists, and influencers",
+        "free web press by At Risk Media",
       logo: {
         light: "./src/assets/tractstack.svg",
         dark: "./src/assets/tractstack-dark.svg",
@@ -33,21 +33,21 @@ export default defineConfig({
           attrs: {
             property: "og:description",
             content:
-              "the SEO-friendly builder for content-driven websites | conversion rate optimization made easy for YouTubers, evangelists, and influencers",
+              "free web press by At Risk Media",
           },
         },
         {
           tag: "meta",
           attrs: {
             property: "og:image",
-            content: "https://tractstack.org/og-tractstack-docs.png",
+            content: "https://tractstack.org/og.png",
           },
         },
         {
           tag: "meta",
           attrs: {
             property: "og:logo",
-            content: "https://tractstack.org/logo.png",
+            content: "https://tractstack.org/oglogo.png",
           },
         },
         {
