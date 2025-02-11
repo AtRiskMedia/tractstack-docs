@@ -28,7 +28,7 @@ pnpm dev
 
 While Tract Stack can be run as a standalone in a Docker for production installs we offer this guide based on [Debian Linux](https://www.debian.org/) running Nginx with PHP 8.2 FPM, Docker.
 
-For a production install you will need a [Turso](https://turso.tech) database url with read &amp; write token. They offer a generous free tier which will be sufficient for most sites. Although we recommend at `hobby` tier for no cold starts and no database archival.
+For a production install you will need a [Turso](https://turso.tech) database url with read &amp; write token. They offer a generous free tier which will be sufficient for most sites. Although we recommend at least `hobby` tier for no cold starts and no database archival.
 
 ### Production Install
 
@@ -65,6 +65,11 @@ B2_APPLICATION_KEY_ID=
 B2_APPLICATION_KEY=
 ```
 
+**Domain configuration (if using Cloudflare)**
+
+
+The install script will use a ./cert.sh and look for your [dns_cloudflare_api_token](https://certbot-dns-cloudflare.readthedocs.io/en/stable/) in /root/.secrets/certbot/cloudflare.ini. If present it will attempt to generate SSL certs for the domains being used. Remember you can use a CNAME for a public-facing branded URL.
+
 :::note
 Nginx will be configured for you by the install script. Two sub-domains are configured for each Tract Stack during the install process:
 
@@ -91,4 +96,4 @@ All the instructions (and credentials) will be shown in the terminal. You will n
 
 #### Enter your Story Keep
 
-Visit `https://hello.yourdomain.com/storykeep/login?force=true` (update with your domain; use the link provided in the terminal) and log-in with the account you made in the prior step.
+Visit `https://hello.yourdomain.com/storykeep/login?force=true` (update with your domain; use the link provided in the terminal) and log-in with the account you made in the prior step. On first install you will not be asked for the password, and you will be prompted to provide your own secure password(s) during site initialization.
