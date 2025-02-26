@@ -21,6 +21,6 @@ hero:
 You can use Tract Stack to build interactive and engaging websites. No technical experience required. [Learn more](/concepts/tractstack/)
 :::
 
-:::tip[Farm engagement and build community in the attention economy]
+:::tip[where ideas build community]
 Tract Stack is made by [At Risk Media](https://atriskmedia.com?utm_source=docs&utm_medium=www&utm_campaign=starlight).
 :::
