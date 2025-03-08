@@ -17,6 +17,8 @@ If you want Tract Stack as a service, visit [Pricing](https://tractstack.com/pri
 
 For non-production use you don't even need Docker. It will work in `dev` mode just fine via a local-first Turso database.
 
+Pre-requirements: Node 20, pnpm 9+
+
 ```
 pnpm create astro@latest my-tractstack-site --template AtRiskMedia/tractstack-starter/template --typescript strict --install --package-manager pnpm
 
