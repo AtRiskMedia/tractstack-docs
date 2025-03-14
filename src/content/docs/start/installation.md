@@ -36,6 +36,33 @@ For a production install you will need a [Turso](https://turso.tech) database ur
 
 Tract Stack should run on any VPS with 1-2GB ram. This guide and its scripts are based on Debian 12. If you port elsewhere, please let us know!
 
+#### Prepare Debian
+
+As root user...
+```
+apt update
+apt install -y nginx curl php8.2-fpm php8.2 php-cli php-zip unzip php8.2-curl rsync backblaze-b2 gnupg2 ca-certificates python3 python3-pip python3.11-venv sudo git vim docker.io
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install -y nodejs
+corepack enable
+COREPACK_ENABLE_STRICT=0 corepack prepare pnpm@latest --activate
+systemctl enable nginx
+systemctl start nginx
+systemctl enable php8.2-fpm
+systemctl start php8.2-fpm
+systemctl enable docker
+systemctl start docker
+```
+
+Install [Composer](https://getcomposer.org/download/) *best to check their site for latest version
+```
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/local/bin/composer
+```
+
 #### Create the t8k user
 
 Tract Stack installs itself in the `t8k` user `/home/t8k` folder.
@@ -52,6 +79,16 @@ Next, become the `t8k` user and get the Tract Stack installer:
 ```bash
 su - t8k
 git clone https://github.com/AtRiskMedia/tractstack-installer
+```
+
+And set-up certbot in a virtual environment.
+```
+su - t8k
+python3 -m venv ~/certbot_venv
+source ~/certbot_venv/bin/activate
+pip install --upgrade pip
+pip install certbot certbot-dns-cloudflare
+deactivate
 ```
 
 #### Prepare your environment
