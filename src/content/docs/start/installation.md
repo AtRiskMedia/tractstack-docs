@@ -56,7 +56,7 @@ systemctl start docker
 
 If you're using backblaze for backups...
 ```
-sudo apt install pipx
+sudo apt install pipx rclone
 pipx install b2
 ```
 
