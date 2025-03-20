@@ -69,6 +69,19 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ```
 
+Increase the max post size in your /etc/nginx/nginx.conf
+```
+http {
+    # Increase to something appropriate (e.g., 20MB)
+    client_max_body_size 20M;
+    # ...rest of config
+}
+```
+and reload your nginx config
+```
+service nginx reload
+```
+
 #### Create the t8k user
 
 Tract Stack installs itself in the `t8k` user `/home/t8k` folder.
