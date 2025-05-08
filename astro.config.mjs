@@ -1,24 +1,30 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://tractstack.org",
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
     starlight({
       title: "Tract Stack | Build recipes + docs",
-      description:
-        "free web press by At Risk Media",
+      description: "free web press by At Risk Media",
       logo: {
         light: "./src/assets/tractstack.svg",
         dark: "./src/assets/tractstack-dark.svg",
         replacesTitle: true,
       },
-      social: {
-        github: "https://github.com/AtRiskMedia/tractstack-docs",
-      },
+      // Updated social links format with href instead of link
+      social: [
+        {
+          label: "GitHub",
+          href: "https://github.com/AtRiskMedia/tractstack-docs",
+          icon: "github",
+        },
+      ],
       customCss: ["./src/styles/custom.css", "./src/styles/tailwind.css"],
       head: [
         {
@@ -32,8 +38,7 @@ export default defineConfig({
           tag: "meta",
           attrs: {
             property: "og:description",
-            content:
-              "free web press by At Risk Media",
+            content: "free web press by At Risk Media",
           },
         },
         {
@@ -126,13 +131,7 @@ export default defineConfig({
           },
           collapsed: true,
         },
-     ],
-      social: {
-        github: "https://github.com/AtRiskMedia/tractstack-docs",
-      },
-    }),
-    tailwind({
-      applyBaseStyles: false,
+      ],
     }),
   ],
 });

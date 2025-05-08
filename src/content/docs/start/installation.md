@@ -41,7 +41,7 @@ Tract Stack should run on any VPS with 1-2GB ram. This guide and its scripts are
 As root user...
 ```
 apt update
-apt install -y nginx curl php8.2-fpm php8.2 php-cli php-zip unzip php8.2-curl rsync backblaze-b2 gnupg2 ca-certificates python3 python3-pip python3.11-venv sudo git vim docker.io
+apt install -y jq nginx curl php8.2-fpm php8.2 php-cli php-zip unzip php8.2-curl rsync backblaze-b2 gnupg2 ca-certificates python3 python3-pip python3.11-venv sudo git vim docker.io
 curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
 apt install -y nodejs
 corepack enable
