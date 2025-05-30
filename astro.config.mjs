@@ -109,7 +109,7 @@ export default defineConfig({
           label: "Core Concepts",
           items: [
             {
-              label: "Websites that build community",
+              label: "Best technology stack",
               link: "/concepts/astro/",
             },
             { label: "Pressed by Tract Stack", link: "/concepts/tractstack/" },

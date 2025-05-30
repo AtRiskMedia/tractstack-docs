@@ -11,21 +11,21 @@ we build (and share) modern web publishing tools for making high engagement and 
 
 _check out some websites built with our software..._
 
-### At Risk Media dot com
+### At Risk Media
 
 Simple landing page website. Collects emails / newsletter sign-ups.
 
 [https://atriskmedia.com](https://atriskmedia.com)
 
-![At Risk Media dot com](../../../assets/atriskmedia-og.png)
+![At Risk Media](../../../assets/atriskmedia-og.png)
 
-### Tract Stack dot com
+### Tract Stack
 
 Our flagship "website maker"
 
 [https://tractstack.com](https://tractstack.com)
 
-![Tract Stack dot com](../../../assets/tractstack-og.png)
+![Tract Stack](../../../assets/tractstack-og.png)
 
 ### Touching Toronto
 

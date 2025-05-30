@@ -1,5 +1,5 @@
 ---
-title: Make a website that converts
+title: Best technology stack
 description: Build it with Astro!
 ---
 
