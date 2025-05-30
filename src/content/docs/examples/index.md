@@ -13,19 +13,19 @@ _check out some websites built with our software..._
 
 ### At Risk Media dot com
 
-![At Risk Media dot com](../../../assets/atriskmedia-og.png)
-
 Simple landing page website. Collects emails / newsletter sign-ups.
 
 [https://atriskmedia.com](https://atriskmedia.com)
 
-### Tract Stack dot com
+![At Risk Media dot com](../../../assets/atriskmedia-og.png)
 
-![Tract Stack dot com](../../../assets/tractstack-og.png)
+### Tract Stack dot com
 
 Our flagship "website maker"
 
 [https://tractstack.com](https://tractstack.com)
+
+![Tract Stack dot com](../../../assets/tractstack-og.png)
 
 ### Touching Toronto
 
@@ -40,3 +40,5 @@ Sneaky Productions creates hand-drawn collectable trading cards and physical pro
 They represent an incredible and vibrant community but needed a place for fans to discover the art and lore.
 
 Check out [Making Sneakypedia](/examples/sneakypedia) for this unfolding story.
+
+![Making Sneakypedia](../../../assets/sneaky-01.png)
