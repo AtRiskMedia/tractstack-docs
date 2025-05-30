@@ -28,13 +28,16 @@ Use the `Sort by Most Active` toggle to see which pages are getting the most rec
 ### Manage Content
 
 **Special Content:**
+
 - Images: site-wide registry of images uploaded
 - Menus: create custom menus
 - Resources: custom content types especially for dynamic elements like an itinerary or recommended readings widget
 - Tract Stacks: carefully craft how your site analytics will be gathered
 
 **Epistemic Hypermedia:**
+
 - Magic Path Beliefs: define how visitors can engage dynamically with your content
 
 **Create New:**
+
 - Create menu, resource, tract stack, web page (storyfragment), context page

@@ -1,6 +1,6 @@
 ---
 title: Magic paths
-description: Adaptive content pathways 
+description: Adaptive content pathways
 ---
 
 The medium that carries your narrative should be as dynamic and engaging as the story itself.

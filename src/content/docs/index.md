@@ -6,21 +6,21 @@ hero:
   image:
     file: ../../assets/oglogo.png
   actions:
-    - text: Read our docs
+    - text: Read docs
       link: /start/installation/
       icon: right-arrow
       variant: primary
-    - text: See in action!
+    - text: See Product
       link: https://tractstack.com?utm_source=docs&utm_medium=www&utm_campaign=starlight
       icon: external
       attrs:
         target: _blank
 ---
 
-:::note[Next chapter in digital analytics]
-You can use Tract Stack to build interactive and engaging websites. No technical experience required. [Learn more](/concepts/tractstack/)
+:::note[websites that build community]
+You can use Tract Stack to build interactive and engaging websites. No technical experience required. [Read docs](/start/installation/)
 :::
 
-:::tip[where ideas build community]
+:::tip[redeeming stale, static and boring websites through better website software]
 Tract Stack is made by [At Risk Media](https://atriskmedia.com?utm_source=docs&utm_medium=www&utm_campaign=starlight).
 :::

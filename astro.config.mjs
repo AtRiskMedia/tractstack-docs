@@ -92,10 +92,24 @@ export default defineConfig({
           ],
         },
         {
+          label: "Examples",
+          items: [
+            {
+              label: "Sites built with Tract Stack",
+              link: "/examples/",
+            },
+            {
+              label: "Making Sneakypedia",
+              link: "/examples/sneakypedia",
+            },
+          ],
+          collapsed: true,
+        },
+        {
           label: "Core Concepts",
           items: [
             {
-              label: "Make a website that converts",
+              label: "Websites that build community",
               link: "/concepts/astro/",
             },
             { label: "Pressed by Tract Stack", link: "/concepts/tractstack/" },
