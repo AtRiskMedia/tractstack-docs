@@ -5,7 +5,7 @@ head:
   - tag: meta
     attrs:
       property: og:image
-      content: /src/assets/sneakypedia-og.png
+      content: /sneakypedia-og.png
   - tag: meta
     attrs:
       property: og:image:alt
