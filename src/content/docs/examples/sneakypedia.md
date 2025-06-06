@@ -1,7 +1,6 @@
 ---
 title: Making Sneakypedia
 description: Lore unleashed by Tract Stack
-
 head:
   - tag: meta
     attrs:

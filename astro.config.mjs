@@ -17,7 +17,7 @@ export default defineConfig({
         dark: "./src/assets/tractstack-dark.svg",
         replacesTitle: true,
       },
-      // Updated social links format with href instead of link
+      // Social links in array format
       social: [
         {
           label: "GitHub",
@@ -27,20 +27,6 @@ export default defineConfig({
       ],
       customCss: ["./src/styles/custom.css", "./src/styles/tailwind.css"],
       head: [
-        {
-          tag: "meta",
-          attrs: {
-            property: "og:title",
-            content: "Tract Stack | Build recipes + docs",
-          },
-        },
-        {
-          tag: "meta",
-          attrs: {
-            property: "og:description",
-            content: "free web press by At Risk Media",
-          },
-        },
         {
           tag: "meta",
           attrs: {
