@@ -12,9 +12,9 @@ head:
       content: Making Sneakypedia how-to guide
 ---
 
-[Sneaky Productions](https://sneaky.productions) creates hand-drawn collectable trading cards and physical products linked by story and lore to blockchain NFTs (digital art).
+[Sneaky Productions](https://sneaky.productions) is a company that started two years ago with a popular digital art project (NFTs) that sold out in six seconds and remains an all-time top 20 collection. They’ve expanded into physical products like plush toys and trading cards.
 
-They represent an incredible and vibrant community but needed a place for fans to discover the art and lore.
+They represent an incredible vibrant community in need of a place for fans to discover more art and lore.
 
 Making Sneakypedia is a 10 episode unfolding mini-series.
 
