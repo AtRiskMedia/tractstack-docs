@@ -1,6 +1,16 @@
 ---
 title: Making Sneakypedia
 description: Lore unleashed by Tract Stack
+
+head:
+  - tag: meta
+    attrs:
+      property: og:image
+      content: /src/assets/sneakypedia-og.png
+  - tag: meta
+    attrs:
+      property: og:image:alt
+      content: Making Sneakypedia how-to guide
 ---
 
 [Sneaky Productions](https://sneaky.productions) creates hand-drawn collectable trading cards and physical products linked by story and lore to blockchain NFTs (digital art).
@@ -23,3 +33,7 @@ Challenge was: how to turn it all into an incredible over-stuffed lore rich and 
     allowfullscreen>
   </iframe>
 </div>
+
+### Episode 02
+
+... dropping in a minute
