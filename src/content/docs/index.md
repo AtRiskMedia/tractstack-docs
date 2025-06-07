@@ -1,8 +1,8 @@
 ---
 title: Tract Stack
-description: Tract Stack | recipes + resources
+description: no-code community engine and website maker | recipes + resources
 hero:
-  tagline: free web press by At Risk Media
+  tagline: the free web press from At Risk Media | no-code community engine and website maker
   image:
     file: ../../assets/oglogo.png
   actions:
@@ -17,7 +17,7 @@ hero:
         target: _blank
 ---
 
-:::note[websites that build community]
+:::note[no-code community engine and website maker]
 You can use Tract Stack to build interactive and engaging websites. No technical experience required. [Read docs](/start/installation/)
 :::
 
