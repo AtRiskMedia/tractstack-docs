@@ -51,3 +51,20 @@ Once we understand the "shape" of everything we can begin to build out a web pre
     allowfullscreen>
   </iframe>
 </div>
+
+### Episode 03
+
+Tonight's the night!
+
+We're springing this trap.
+
+Watch as we build the draft sneakypedia from scratch!
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/PCbCNAd290Y" 
+    frameborder="0" 
+    allowfullscreen>
+  </iframe>
+</div>
