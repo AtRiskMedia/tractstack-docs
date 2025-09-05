@@ -1,6 +1,6 @@
 ---
 title: Project structure
-description: Your Tract Stack on the server
+description: Tract Stack production installs
 ---
 
 import { FileTree } from "@astrojs/starlight/components";
@@ -10,70 +10,270 @@ You are reading the technical guide for self-install.
 If you want all this handled for you please visit [Tract Stack](https://tractstack.com/#pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for managed hosting options.
 :::
 
-## Server set-up
+## Server Architecture
 
-On your server, you'll have two or more users.
+TractStack v2 uses a centralized architecture where the `t8k` user manages all installations and each site runs as isolated processes with shared infrastructure.
 
-The `t8k` user holds the installer and admin scripts.
+### The t8k User
 
-Each Tract Stack _instance_ (website) will have a dedicated user account and `/home/user` folder.
+TractStack reserves the `t8k` user for system management. This account handles:
 
-### The t8k user
+- Installation and uninstallation scripts
+- SSL certificate management via Let's Encrypt
+- nginx configuration
+- systemd service management
+- Build automation and deployment
 
-Tract Stack reserves the `t8k` user. You'll use this account when installing (or uninstalling) a new instance.
-
-<FileTree>
-
-- tractstack-installer/
-  - scripts/
-  - files/
-- backup/
-
-</FileTree>
-
-### For each Tract Stack instance
-
-Once installed you'll have a new `/home/user` folder. This is where all the magic happens! Everything you'll need to configure can be done via the Story Keep.
+#### t8k User Directory Structure
 
 <FileTree>
 
-- .env
-- log/
-- watch/
-- scripts/
-- tmp/
-- src/
-  - tractstack-starter/
-  - tractstack-storykeep/
-    - .env
-    - public/custom/images/
-    - public/styles/custom.css
-    - src/custom/
-    - src/custom/codehooks.astro
-    - src/custom/HeaderWidget.astro
-    - Dockerfile
-- srv/
-  - public_html/
-    - storykeep/api/
-  - tractstack-concierge/
-    - .env
+- /home/t8k/
+  - src/ Source code repositories
+    - tractstack-go/ Go backend source
+      - tractstack-go Compiled binary
+      - .env Backend configuration
+    - my-tractstack/ Astro frontend source
+      - dist/ Built static files
+      - .env Frontend configuration
+      - astro.config.mjs Astro configuration
+  - bin/ Production binaries
+    - tractstack-go Go backend executable
+  - t8k-go-server/ Backend data storage
+    - config/
+      - t8k/
+        - tenants.json Tenant registry
+      - default/ Default tenant config
+        - env.json Core configuration
+        - brand.json Site branding
+        - knownResources.json Resource tracking
+        - tailwindWhitelist.json CSS optimization
+        - media/ Media files
+          - images/
+          - css/
+    - db/
+      - default/
+        - tractstack.db SQLite database
+    - log/
+      - system.log
+      - tenant.log
+      - database.log
+  - etc/ Configuration files
+    - letsencrypt/ SSL certificates
+    - pm2/ PM2 process configs
+      - ecosystem.config.js
+    - t8k-ports.conf Port allocations
+  - scripts/ Operational scripts
+    - t8k-concierge.sh Build automation
+    - t8k-uninstall.sh Uninstaller
+    - extractTailwindWhitelist.py
+  - state/ Build queue
+    - build-\*.csv Build trigger files
+  - certbot_venv/ Certbot virtual environment
+    - bin/certbot
 
 </FileTree>
 
-### Systemd path unit
+### Installation Types
 
-During the install process a few _services_ get installed on your system. This is a `build trigger` that watches the `/home/user/releases/watch` folder. It allows a build to be called by the Story Keep. Optionally, you may opt to install a backup service that relies on [Backblaze](https://backblaze.com).
+TractStack v2 supports four installation modes:
 
-Note: if you uninstall via the `tractstack-uninstall.sh` script, this service gets removed.
+#### 1. Quick Install (Development)
+
+- Local setup in `~/t8k/`
+- No sudo required
+- Perfect for development and testing
+- Single-tenant with SQLite
+
+#### 2. Production Single-Tenant
+
+- System-wide installation at `/home/t8k/`
+- SSL certificates via Let's Encrypt
+- nginx reverse proxy
+- systemd services for automatic startup
+- PM2 process management
+
+#### 3. Production Multi-Tenant
+
+- Same as single-tenant plus:
+- Wildcard domain support (`*.yourdomain.com`)
+- Tenant management at `/sandbox/register`
+- Multiple isolated websites from one installation
+
+#### 4. Dedicated Instance
+
+- Completely separate installation per site
+- Located at `/home/t8k/sites/SITE_ID/`
+- Own source code, binaries, and data
+- Maximum isolation and customization
+
+### Dedicated Instance Structure
+
+For dedicated instances, each site gets its own directory:
 
 <FileTree>
 
-- /etc/systemd/system/
-  - t8k-(user).path
-  - t8k-(user).service
-  - t8k-backup.path
-  - t8k-backup.service
-  - t8k-b2sync-(daily|hourly|monthly|weekly).path
-  - t8k-b2sync-(daily|hourly|monthly|weekly).service
+- /home/t8k/sites/SITE_ID/
+  - src/ Site-specific source code
+    - tractstack-go/ Go backend source
+    - my-tractstack/ Astro frontend source
+  - bin/ Site-specific binaries
+    - tractstack-go Go backend executable
+  - t8k-go-server/ Site-specific data
+    - config/default/ Site configuration
+    - db/default/ Site database
+    - log/ Site logs
 
 </FileTree>
+
+## Systemd Services
+
+During installation, TractStack creates systemd services for automatic startup:
+
+### Main Installation Services
+
+- `tractstack-go.service` - Go backend service
+- `t8k-build-watcher.path` - Monitors build triggers
+- `t8k-build-watcher.service` - Processes build requests
+
+### Dedicated Instance Services
+
+- `tractstack-go@{SITE_ID}.service` - Site-specific Go backend
+- Template-based service management
+
+### PM2 Process Management
+
+- `astro-main` - Main installation Astro process
+- `astro-{SITE_ID}` - Dedicated site Astro processes
+- Automatic restart and log management
+
+## Build System
+
+The build concierge processes automated builds via CSV files:
+
+### Build Trigger Files
+
+Located in `/home/t8k/state/`, CSV format:
+
+```csv
+type=main,tenant=default,command=build
+type=dedicated,site=SITE_ID,command=build
+```
+
+### Build Process
+
+1. Monitor `/home/t8k/state/` for build files
+2. Pull latest code from Git repositories
+3. Build Go backend and Astro frontend
+4. Extract Tailwind CSS optimizations
+5. Restart appropriate services
+6. Clean up processed files
+
+## Multi-Tenant Features
+
+### Tenant Management
+
+- Self-service registration at `/sandbox/register`
+- Automatic subdomain routing (`tenant.yourdomain.com`)
+- Isolated databases and media per tenant
+- Configurable capacity limits
+
+### Domain Routing
+
+nginx configuration handles:
+
+- Main domain routing
+- Wildcard subdomain support
+- SSL certificate sharing
+- Media file isolation per tenant
+
+## Port Management
+
+TractStack automatically allocates ports via `/home/t8k/etc/t8k-ports.conf`:
+
+- **Main installation**: Go port 10000, Astro port 20000
+- **Dedicated instances**: Go ports 10001+, Astro ports 20001+
+- Automatic conflict resolution
+- Persistent port assignments
+
+## SSL Certificate Management
+
+### Automated (Cloudflare)
+
+With Cloudflare API credentials in `/home/t8k/.secrets/certbot/cloudflare.ini`:
+
+- Automatic DNS-01 challenge
+- Wildcard certificate support
+- Automatic renewal
+
+### Manual DNS Verification
+
+For other DNS providers:
+
+- Manual TXT record verification
+- Guided certificate request process
+
+## Service Management
+
+### Status and Control
+
+```bash
+# Main installation
+sudo systemctl status tractstack-go
+sudo -u t8k pm2 status astro-main
+
+# Dedicated instance
+sudo systemctl status tractstack-go@SITE_ID
+sudo -u t8k pm2 status astro-SITE_ID
+```
+
+### Logs
+
+```bash
+# systemd logs
+sudo journalctl -u tractstack-go -f
+
+# PM2 logs
+sudo -u t8k pm2 logs astro-main
+```
+
+## Database Options
+
+### SQLite (Default)
+
+- Zero configuration required
+- Located in `t8k-go-server/db/`
+- Automatic maintenance
+- Scales to hundreds of thousands of visitors
+
+### Turso Cloud Database
+
+- Distributed SQLite with global replication
+- Configure via tenant `env.json`
+- Built-in analytics and monitoring
+
+## Uninstalling
+
+### Production installations
+
+```bash
+sudo /home/t8k/scripts/t8k-uninstall.sh
+```
+
+### Development installations
+
+```bash
+sudo ~/t8k/src/tractstack-go/pkg/scripts/t8k-uninstall.sh
+```
+
+Uninstallation removes:
+
+- All systemd services
+- nginx configurations
+- PM2 processes
+- SSL certificates
+- User accounts (optional)
+
+---
+
+_This architecture provides secure, scalable hosting for adaptive websites while maintaining simplicity for development and deployment._

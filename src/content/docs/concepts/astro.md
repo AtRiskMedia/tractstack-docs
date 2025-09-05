@@ -1,5 +1,5 @@
 ---
-title: Best technology stack
+title: The best web stack
 description: Build it with Astro!
 ---
 

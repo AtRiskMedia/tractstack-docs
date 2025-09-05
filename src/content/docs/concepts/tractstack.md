@@ -1,38 +1,133 @@
 ---
-title: Pressed by Tract Stack
-description: Farm engagement and build community in the attention economy
+title: Pressed with Tract Stack
+description: Tract Stack | Epistemic Hypermedia Platform
 ---
 
-A website "pressed" with Tract Stack has some special attributes compared to other websites. Transform your static website into an intelligent guide that adapts to each visitor's journey, automatically presenting the right content at the right moment.
+## What is Epistemic Hypermedia?
 
-Unlike traditional websites that serve the same pre-rendered content to everyone, Tract Stack creates dynamic pathways that evolve based on visitor engagement - no coding required.
+Epistemic hypermedia represents a fundamental shift from traditional web personalization. Instead of inferring user preferences through behavioral tracking, it enables visitors to directly declare their beliefs and interests, creating personalized experiences through **progressive disclosure**.
 
-Plus, Tract Stack **is itself** an Astro starter kit. You have all the benefits of [Astro](/concepts/astro/) from the get go.
+### The Core Concept
 
-## Free web press by At Risk Media
+When a user visits a Tract Stack-powered page, they see the default version that everyone does. But hidden within that page are countless "folds" - content variants that only reveal themselves when someone signals specific beliefs or interests.
 
-Tract Stack comes with a `Story Keep` web application. You'll log-in to your Story Keep to manage your Tract Stack. This is where you edit and create new web pages.
+**Here's how it works:**
 
-## SEO-friendly through and through
+1. **User visits** a webpage with hidden content folds
+2. **Cache warms** and prepares personalized variants
+3. **User declares preferences** through UI interactions (zero-party data)
+4. **System updates state** for their session, story fragment, and tenant
+5. **Content unfolds** automatically via HTMX, revealing relevant sections
+6. **Seamless experience** - no page refresh, just intelligent content revelation
 
-All the best practices for SEO performance get "pressed" in when you use Tract Stack: technical SEO, semantic HTML, and accessibility (A11y) done right; next gen image formats; ready for social shares; privacy-first analytics. It's all there out-of-the-box.
+This creates a **privacy-first, user data-driven journey** where personalization happens through explicit choice rather than surveillance.
 
-If you are using [Google Analytics](/integrations/google-analytics/), simply add your gtag and you're set!
+## Pressed by Tract Stack
 
-## Engagement analytics
+A website "pressed" with Tract Stack transforms from static content into an intelligent guide that adapts to each visitor's journey, automatically presenting the right content at the right moment.
 
-As readers interact with your content, Tract Stack is noticing what holds everyone's attention. Each section of every page is a touch point for engagement and learning more about your audience.
+### Key Differences from Traditional Websites
 
-Out-of-box [events](/basics/content-engagements) include: `GLOSSED`, `READ`, `CLICKED`, `ENTERED`, `PAGEVIEWED`
+- **Dynamic pathways** that evolve based on visitor engagement
+- **No coding required** for content personalization
+- **Built on Astro** - all the benefits of the Astro framework included
+- **Belief-driven state management** instead of behavioral inference
 
-Enable [Google Analytics](/integrations/google-analytics/) to send data to your Google Search Console.
+## Core Features
 
-## Conversion rate optimization made simple?
+### Story Keep Web Application
 
-Conversion will mean something different for each business or organization. It could be making a sale. Receiving a donation. Get some product waitlist sign-ups. New client books for your services. Insert your goal here. You know your audience best.
+Tract Stack includes a complete content management system where you can:
 
-With Tract Stack you can add [magic paths](/recipes/adaptive/) to better engage each visitor. Based on how they've interacted with the site, a tailored call-to-action can appear at just the right moment.
+- Log in to manage your Tract Stack installation
+- Edit and create new web pages
+- Configure content folds and personalization rules
+- Monitor engagement analytics
 
-## Further reading
+### SEO-Friendly by Design
 
-- Visit [Tract Stack](https://tractstack.com?utm_source=docs&utm_medium=www&utm_campaign=starlight) to see in action
+All SEO best practices are "pressed" in automatically:
+
+- **Technical SEO** optimization
+- **Semantic HTML** structure
+- **Accessibility (A11y)** compliance
+- **Next-gen image formats** for performance
+- **Social sharing** optimization
+- **Privacy-first analytics** built-in
+
+Simply add your Google Analytics gtag if you're using it - everything else is configured out-of-the-box.
+
+### Engagement Analytics
+
+Tract Stack monitors what holds your audience's attention as they interact with content. Each section of every page becomes a touchpoint for engagement and audience insights.
+
+**Out-of-box tracking events:**
+
+- `GLOSSED` - User briefly viewed content
+- `READ` - User spent time reading content
+- `CLICKED` - User interacted with elements
+- `ENTERED` - User arrived at content
+- `PAGEVIEWED` - User loaded the page
+- `WATCHED` - User engaged with media content
+
+Enable Google Analytics integration to send data to Google Search Console automatically.
+
+### Conversion Rate Optimization Made Simple
+
+Conversion means something different for every business - making sales, receiving donations, getting waitlist sign-ups, booking clients, or any goal you define.
+
+With Tract Stack, you can add **magic paths** to better engage each visitor. Based on how they've interacted with your site, tailored calls-to-action appear at precisely the right moment.
+
+## Why Epistemic Hypermedia Changes Everything
+
+### The Problem with Traditional Personalization
+
+Current web personalization is fundamentally broken because it's based on **behavior inference** - digital stalking disguised as customer service:
+
+- Netflix thinks you like action movies because you watched one Jason Statham film
+- Amazon recommends baby products because you bought a gift for your nephew
+- LinkedIn serves AI startup ads because you read one ChatGPT article
+
+### The Epistemic Solution
+
+Instead of guessing what people want, **epistemic hypermedia just asks them**. This creates:
+
+- **Authentic personalization** based on declared preferences
+- **Privacy-first experiences** without tracking or cookies
+- **Progressive disclosure** that reveals relevant content naturally
+- **Belief-driven interactions** that respect user agency
+
+### Technical Implementation
+
+The system works through intelligent state management:
+
+1. **User declares preference** (zero-party data)
+2. **System updates session state** for that user
+3. **Hidden content folds automatically reveal** based on beliefs
+4. **Page reconstructs in real-time** via HTMX
+5. **No page refresh, cookies, or tracking** required
+
+### Competitive Advantages
+
+- **Privacy-first by design** - stronger when third-party cookies disappear
+- **Direct preference declaration** vs. behavioral surveillance
+- **Real-time content adaptation** without page reloads
+- **Built on modern web standards** (Astro + HTMX)
+- **Zero-party data collection** that users actively choose to share
+
+## Common Pain Points Solved
+
+- Serving diverse customers with one-size-fits-all experiences
+- Low conversion rates despite heavy personalization investment
+- Privacy compliance concerns with tracking-based systems
+- Inability to deliver truly relevant content experiences
+
+## Getting Started
+
+Ready to transform your static website into an intelligent, adaptive experience?
+
+[Visit Tract Stack](https://tractstack.com) to see epistemic hypermedia in action and get started with your own installation.
+
+---
+
+_Tract Stack: Where every webpage becomes a personalized conversation that respects privacy while delivering genuinely relevant experiences._

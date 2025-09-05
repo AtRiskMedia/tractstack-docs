@@ -1,164 +1,409 @@
 ---
 title: Installation
-description: Self-hosted recipes on Debian
+description: Self-hosted recipes
 ---
 
-Tract Stack is free (as in kitten). Provide an adequate home, and it's yours - under the source-available [Functional Source License](/start/license) (only restriction is no re-selling Tract Stack as-a-service.)
+TractStack is free (as in kitten). Provide an adequate home, and it's yours - under the source-available Functional Source License (only restriction is no re-selling TractStack as-a-service).
 
-Commercial use is [encouraged](/start/license/). If you are an agency looking to build with Tract Stack, [let's chat](mailto:hello@tractstack.com).
+Commercial use is encouraged. If you are an agency looking to build with TractStack, let's chat: hello@tractstack.com
 
-If you're up to the challenge we'll provide you with everything required to install and self-host your own Tract Stack!
+## Prerequisites
 
-:::caution[This is a technical guide]
-If you want Tract Stack as a service, visit [Pricing](https://tractstack.com/pricing?utm_source=docs&utm_medium=www&utm_campaign=starlight) for managed hosting and "kitty hoteling" options.
-:::
+### Essential Developer Tools
 
-## Quick install (for preview)
+- Go 1.22 or higher
+- Node.js 20 or higher
+- Git
+- npm
+- pnpm (will be installed automatically if missing)
 
-For non-production use you don't even need Docker. It will work in `dev` mode via a local-first Turso database.
+### Production Requirements (additional)
 
-Pre-requirements: Node 20, pnpm 9+
+- nginx web server
+- pm2 Node.js process manager
+- systemd (Linux only)
+- sudo access
+- SSL certificates (automated via Let's Encrypt)
 
+## Installation Methods
+
+### Method 1: One-Line Installer
+
+```bash
+curl -fsSL https://get.tractstack.com | bash
 ```
-pnpm create astro@latest my-tractstack-site --template AtRiskMedia/tractstack-starter/template --typescript strict --install --package-manager pnpm
 
-cd my-tractstack-site
+### Method 2: Direct Script Download
+
+```bash
+wget https://get.tractstack.com/t8k-install.sh
+chmod +x t8k-install.sh
+./t8k-install.sh
+```
+
+Command-line options:
+
+- `--quick` - Quick development install
+- `--prod --domain=yourdomain.com` - Production single-tenant
+- `--multi --domain=yourdomain.com` - Production multi-tenant
+- `--dedicated SITE_ID --domain=yourdomain.com` - Dedicated instance
+- `--non-interactive` - Fail if manual verification needed (for CI/CD)
+
+## Installation Types
+
+### 1. Quick Install (Development)
+
+Local development setup in your user directory. No sudo required.
+
+Installation creates:
+
+- `~/t8k/src/tractstack-go` - Go backend source
+- `~/t8k/src/my-tractstack` - Astro frontend source
+- `~/t8k/t8k-go-server` - Data directory
+
+To start:
+
+```bash
+# Terminal 1
+cd ~/t8k/src/tractstack-go
+./tractstack-go
+
+# Terminal 2
+cd ~/t8k/src/my-tractstack
 pnpm dev
 ```
 
-## Production install (recommended)
+Access at `http://localhost:4321`
 
-While Tract Stack can be run as a standalone in a Docker for production installs we offer this guide based on [Debian Linux](https://www.debian.org/) running Nginx with PHP 8.2 FPM, Docker.
+### 2. Production Single-Tenant
 
-For a production install you will need a [Turso](https://turso.tech) database url with read &amp; write token. They offer a generous free tier which will be sufficient for most sites. Although we recommend at least `hobby` tier for no cold starts and no database archival.
+Production setup at `/home/t8k/` for one website.
 
-### Production Install
+Creates:
 
-Tract Stack should run on any VPS with 1-2GB ram. This guide and its scripts are based on Debian 12. If you port elsewhere, please let us know!
+- Dedicated `t8k` system user
+- SSL certificates
+- nginx reverse proxy
+- systemd service `tractstack-go`
+- PM2 process `astro-main`
+- Ports: 10000 (Go), 20000 (Astro)
 
-#### Prepare Debian
+### 3. Production Multi-Tenant
 
-As root user...
+Same as Production Single-Tenant with:
 
-```
-apt update
-apt install -y jq nginx curl php8.2-fpm php8.2 php-cli php-zip unzip php8.2-curl rsync backblaze-b2 gnupg2 ca-certificates python3 python3-pip python3.11-venv sudo git vim docker.io
-curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-apt install -y nodejs
-corepack enable
-COREPACK_ENABLE_STRICT=0 corepack prepare pnpm@latest --activate
-systemctl enable nginx
-systemctl start nginx
-systemctl enable php8.2-fpm
-systemctl start php8.2-fpm
-systemctl enable docker
-systemctl start docker
-```
+- `ENABLE_MULTI_TENANT=true` environment variable
+- nginx wildcard domain support (`*.yourdomain.com`)
+- Tenants managed via application at `/sandbox/register`
 
-If you're using backblaze for backups...
+### 4. Dedicated Instance
 
-```
-sudo apt install pipx rclone
-pipx install b2
-```
+Separate, complete installation at `/home/t8k/sites/SITE_ID/`
 
-Then install [Composer](https://getcomposer.org/download/) \*best to check their site for latest version
+Features:
 
-```
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-mv composer.phar /usr/local/bin/composer
-```
+- Own source code copy
+- Own binaries
+- Own data directory
+- Always uses `tenantId=default`
+- systemd service `tractstack-go@SITE_ID`
+- PM2 process `astro-SITE_ID`
+- Ports start at 10001 (Go), 20001 (Astro)
 
-Increase the max post size in your /etc/nginx/nginx.conf
+## SSL Certificate Configuration
 
-```
-http {
-    # Increase to something appropriate (e.g., 20MB)
-    client_max_body_size 20M;
-    # ...rest of config
-}
+### Option 1: Cloudflare DNS (Automated)
+
+Create `/root/.secrets/certbot/cloudflare.ini`:
+
+```ini
+dns_cloudflare_api_token = YOUR_API_TOKEN_HERE
 ```
 
-and reload your nginx config
-
-```
-service nginx reload
-```
-
-#### Create the t8k user
-
-Tract Stack installs itself in the `t8k` user `/home/t8k` folder.
-
-There are two steps involved. First, create the user. _remember your password!_
+Set permissions:
 
 ```bash
-sudo adduser t8k
-sudo usermod -aG sudo t8k
+chmod 600 /root/.secrets/certbot/cloudflare.ini
 ```
 
-Next, become the `t8k` user and get the Tract Stack installer:
+Certificates will be obtained automatically during installation.
+
+### Option 2: Manual DNS Verification
+
+Without Cloudflare credentials, installer will:
+
+1. Display TXT records to add to DNS
+2. Wait for manual DNS update
+3. Verify and issue certificates
+
+## Post-Installation
+
+### Access Points
+
+After successful installation:
+
+- `https://yourdomain.com` - Production domain
+- `http://localhost:20000` - Direct Astro access (main)
+- `http://localhost:10000` - Go backend API (main)
+
+For dedicated instances, check `/home/t8k/etc/t8k-ports.conf` for allocated ports.
+
+### Service Management
+
+**Main installation (prod/multi):**
 
 ```bash
-su - t8k
-git clone https://github.com/AtRiskMedia/tractstack-installer
+# Status
+sudo systemctl status tractstack-go
+sudo -u t8k pm2 status astro-main
+
+# Restart
+sudo systemctl restart tractstack-go
+sudo -u t8k pm2 restart astro-main
+
+# Logs
+sudo journalctl -u tractstack-go -f
+sudo -u t8k pm2 logs astro-main
+
+# Stop
+sudo systemctl stop tractstack-go
+sudo -u t8k pm2 stop astro-main
 ```
 
-And set-up certbot in a virtual environment.
-
-```
-su - t8k
-python3 -m venv ~/certbot_venv
-source ~/certbot_venv/bin/activate
-pip install --upgrade pip
-pip install certbot certbot-dns-cloudflare
-deactivate
-```
-
-#### Prepare your environment
-
-Log-in or become the `t8k` user.
-
-**Set your BASE_URL in ~/tractstack-installer/scripts/tractstack-install.sh**
-
-There is an optional USE_BACKUPS flag to enable. This depends on [Backblack](https://backblaze.com). Create a bucket and a ~/.env.b2 file:
-
-```
-B2_BUCKET_NAME=
-B2_APPLICATION_KEY_ID=
-B2_APPLICATION_KEY=
-```
-
-**Domain configuration (if using Cloudflare)**
-
-The install script will use a ./cert.sh and look for your [dns_cloudflare_api_token](https://certbot-dns-cloudflare.readthedocs.io/en/stable/) in /root/.secrets/certbot/cloudflare.ini. If present it will attempt to generate SSL certs for the domains being used. Remember you can use a CNAME for a public-facing branded URL.
-
-:::note
-Nginx will be configured for you by the install script. Two sub-domains are configured for each Tract Stack during the install process:
-
-- `hello.yourdomain.com` will serve the frontend; this could be a CNAME pointing to `yourdomain.com` -- if you update your primary domain, be sure to set the new domain in your Story Keep
-- `storykeep.hello.yourdomain.com` will serve the backend services (e.g. to trigger a rebuild when required)
-  :::
-
-#### Run the install script
-
-Use the `tractstack-install.sh` script to get a new instance of Tract Stack (e.g. 1 website). A new user account and `/home/user` folder will be generated through this process. (If you are running multiple websites, simply repeat the process with a different user name.)
+**Dedicated instances:**
 
 ```bash
-cd ~/tractstack-installer/scripts
-sudo ./tractstack-install.sh hello
+# Status (replace SITE_ID)
+sudo systemctl status tractstack-go@SITE_ID
+sudo -u t8k pm2 status astro-SITE_ID
+
+# Restart
+sudo systemctl restart tractstack-go@SITE_ID
+sudo -u t8k pm2 restart astro-SITE_ID
+
+# Logs
+sudo journalctl -u tractstack-go@SITE_ID -f
+sudo -u t8k pm2 logs astro-SITE_ID
+
+# Stop
+sudo systemctl stop tractstack-go@SITE_ID
+sudo -u t8k pm2 stop astro-SITE_ID
 ```
 
-_Carefully decide upon a subdomain for this Tract Stack._ It will also be used as username on Debian. It **must** be short and text only, no spaces. We'll use `hello` as a default user name/sub-domain. Once your website is live, you can set-up the subdomains a CNAME records pointing to the primary domain.
+### Build System
 
-#### Complete the installation
+The build concierge (`/home/t8k/scripts/t8k-concierge.sh`) processes build commands from CSV files in `/home/t8k/state/`.
 
-The install script will take 1-2 minutes.
+CSV format:
 
-All the instructions (and credentials) will be shown in the terminal. You will need to copy and paste these! Be sure to store them in a secure place afterwards.
+```
+type=TYPE,tenant=TENANT,site=SITE,command=build
+```
 
-#### Enter your Story Keep
+Parameters:
 
-Visit `https://hello.yourdomain.com/storykeep/login?force=true` (update with your domain; use the link provided in the terminal) and log-in with the account you made in the prior step. On first install you will not be asked for the password, and you will be prompted to provide your own secure password(s) during site initialization.
+- `type`: `main`/`prod`/`multi` or `dedicated`
+- `tenant`: tenant ID (optional)
+- `site`: site ID (required for dedicated)
+- `command`: `build`
+
+The concierge:
+
+1. Pulls latest from Git
+2. Builds Go backend
+3. Builds Astro frontend
+4. Extracts Tailwind whitelist
+5. Restarts services
+6. Removes processed CSV
+
+Files must be named `build-*.csv` and are processed in sorted order.
+
+### Multi-Tenant Management
+
+New tenants are created through the application, not the installer:
+
+1. Visit `/sandbox/register` on multi-tenant installation
+2. Register tenants via web interface
+3. Each tenant gets subdomain (e.g., `tenant1.yourdomain.com`)
+
+## Directory Structure
+
+### Main Installation
+
+```
+/home/t8k/
+├── src/
+│   ├── tractstack-go/
+│   └── my-tractstack/
+├── t8k-go-server/
+│   └── config/
+│       └── default/
+│           ├── media/
+│           └── env.json
+├── bin/
+│   └── tractstack-go
+├── etc/
+│   ├── letsencrypt/
+│   ├── pm2/
+│   └── t8k-ports.conf
+├── scripts/
+│   └── t8k-concierge.sh
+└── state/
+```
+
+### Dedicated Instance
+
+```
+/home/t8k/sites/SITE_ID/
+├── src/
+│   ├── tractstack-go/
+│   └── my-tractstack/
+├── t8k-go-server/
+│   └── config/
+│       └── default/
+│           ├── media/
+│           └── env.json
+└── bin/
+    └── tractstack-go
+```
+
+## Troubleshooting
+
+### Installation Issues
+
+Lock file exists:
+
+```bash
+rm -f /tmp/t8k-install.lock
+```
+
+Port conflicts:
+
+```bash
+cat /home/t8k/etc/t8k-ports.conf
+```
+
+SSL certificate issues:
+
+```bash
+sudo -i -u t8k bash -c "source /home/t8k/certbot_venv/bin/activate && \
+  certbot certonly --manual --preferred-challenges dns \
+  --config-dir /home/t8k/etc/letsencrypt \
+  --work-dir /home/t8k/lib/letsencrypt \
+  --logs-dir /home/t8k/log/letsencrypt \
+  --agree-tos --email admin@yourdomain.com \
+  -d yourdomain.com -d *.yourdomain.com"
+```
+
+### Service Issues
+
+**Main installation:**
+
+```bash
+# Go backend
+sudo journalctl -u tractstack-go -n 50 --no-pager
+
+# Astro frontend
+sudo -u t8k pm2 logs astro-main --lines 50
+```
+
+**Dedicated instance:**
+
+```bash
+# Go backend
+sudo journalctl -u tractstack-go@SITE_ID -n 50 --no-pager
+
+# Astro frontend
+sudo -u t8k pm2 logs astro-SITE_ID --lines 50
+```
+
+**nginx:**
+
+```bash
+sudo nginx -t
+sudo tail -f /var/log/nginx/error.log
+```
+
+## Uninstalling
+
+TractStack v2 includes a dedicated uninstall script that handles all installation types safely and thoroughly.
+
+### Automated Uninstall Script
+
+**Download and run:**
+
+```bash
+wget https://get.tractstack.com/t8k-uninstall.sh
+chmod +x t8k-uninstall.sh
+sudo ./t8k-uninstall.sh
+```
+
+**Command-line options:**
+
+```bash
+# Interactive mode (recommended)
+sudo ./t8k-uninstall.sh
+
+# Remove main installation (prod/multi-tenant)
+sudo ./t8k-uninstall.sh main
+
+# Remove specific dedicated site
+sudo ./t8k-uninstall.sh site SITE_ID
+
+# Remove everything including t8k user
+sudo ./t8k-uninstall.sh all
+
+# Non-interactive mode (for automation)
+sudo ./t8k-uninstall.sh all --non-interactive
+```
+
+The uninstall script will:
+
+- Stop all running TractStack services
+- Remove systemd service definitions
+- Clean up PM2 processes
+- Remove nginx configurations and reload
+- Update port allocations
+- Remove directories and source code
+- Optionally remove the t8k user account
+
+### Manual Uninstall (Alternative)
+
+If you prefer manual removal or the script is unavailable:
+
+```bash
+# Stop services
+sudo systemctl stop tractstack-go*
+sudo systemctl disable tractstack-go*
+sudo -u t8k pm2 delete all
+sudo pm2 unstartup systemd
+
+# Remove nginx configs
+sudo rm -f /etc/nginx/sites-enabled/t8k-*.conf
+sudo rm -f /etc/nginx/sites-available/t8k-*.conf
+sudo systemctl reload nginx
+
+# Remove systemd services
+sudo rm -f /etc/systemd/system/tractstack-go*.service
+sudo rm -f /etc/systemd/system/t8k-build-watcher.*
+sudo systemctl daemon-reload
+
+# Remove user and files (CAUTION: This removes all data)
+sudo userdel -r t8k
+```
+
+**Warning:** This permanently deletes all TractStack data, configurations, and user-generated content. Ensure you have backups of any important data before proceeding.
+
+## Support
+
+- Documentation: https://tractstack.org/docs
+- GitHub: https://github.com/AtRiskMedia/tractstack-go/issues
+- Email: hello@tractstack.com
+
+## License
+
+Functional Source License (FSL) - Commercial use encouraged.
+
+---
+
+_TractStack v2 - Made by At Risk Media_

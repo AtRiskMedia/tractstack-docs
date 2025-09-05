@@ -1,8 +1,8 @@
 ---
 title: Tract Stack
-description: no-code community engine and website maker | recipes + resources
+description: adaptive content management system | recipes + resources
 hero:
-  tagline: the free web press from At Risk Media | no-code community engine and website maker
+  tagline: the "free web press" by At Risk Media
   image:
     file: ../../assets/oglogo.png
   actions:
@@ -10,17 +10,17 @@ hero:
       link: /start/installation/
       icon: right-arrow
       variant: primary
-    - text: See Product
+    - text: Try Now
       link: https://tractstack.com?utm_source=docs&utm_medium=www&utm_campaign=starlight
       icon: external
       attrs:
         target: _blank
 ---
 
-:::note[no-code community engine and website maker]
-You can use Tract Stack to build interactive and engaging websites. No technical experience required. [Read docs](/start/installation/)
-:::
+TractStack is a new species of web platform that makes it possible for millions of websites to adapt to each visitor instead of showing everyone the same thing. It's an **adaptive website builder** that creates fast, beautiful, SEO-ready, and accessible websites that respond intelligently to user behavior.
 
-:::tip[redeeming stale, static and boring websites through better website software]
+Built on [Astro](https://astro.build/) with [HTMX](https://htmx.org/) and a [Golang](https://go.dev/) backend, TractStack uses SQLite by default with optional [Turso](https://app.turso.tech/) cloud database support.
+
+:::tip[redeeming the websites from boring experiences]
 Tract Stack is made by [At Risk Media](https://atriskmedia.com?utm_source=docs&utm_medium=www&utm_campaign=starlight).
 :::

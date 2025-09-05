@@ -77,28 +77,28 @@ export default defineConfig({
             { label: "License", link: "/start/license/" },
           ],
         },
-        {
-          label: "Examples",
-          items: [
-            {
-              label: "Sites built with Tract Stack",
-              link: "/examples/",
-            },
-            {
-              label: "Making Sneakypedia",
-              link: "/examples/sneakypedia",
-            },
-          ],
-          collapsed: true,
-        },
+        //{
+        //  label: "Examples",
+        //  items: [
+        //    {
+        //      label: "Sites built with Tract Stack",
+        //      link: "/examples/",
+        //    },
+        //    {
+        //      label: "Making Sneakypedia",
+        //      link: "/examples/sneakypedia",
+        //    },
+        //  ],
+        //  collapsed: true,
+        //},
         {
           label: "Core Concepts",
           items: [
+            { label: "Pressed by Tract Stack", link: "/concepts/tractstack/" },
             {
-              label: "Best technology stack",
+              label: "The best web stack",
               link: "/concepts/astro/",
             },
-            { label: "Pressed by Tract Stack", link: "/concepts/tractstack/" },
           ],
           collapsed: true,
         },
@@ -107,12 +107,9 @@ export default defineConfig({
           items: [
             { label: "Project structure", link: "/basics/structure/" },
             { label: "Story Keep", link: "/basics/storykeep/" },
+            { label: "Unfolding magic paths", link: "/basics/magic-paths/" },
             { label: "Story Fragments", link: "/basics/story-fragments/" },
             { label: "Context Pages", link: "/basics/context-pages/" },
-            {
-              label: "Engagement Analytics",
-              link: "/basics/content-engagements/",
-            },
             { label: "Impressions", link: "/basics/impressions/" },
           ],
           collapsed: true,
