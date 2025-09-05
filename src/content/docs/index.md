@@ -17,7 +17,7 @@ hero:
         target: _blank
 ---
 
-TractStack is a new species of web platform that makes it possible for millions of websites to adapt to each visitor instead of showing everyone the same thing. It's an **adaptive website builder** that creates fast, beautiful, SEO-ready, and accessible websites that respond intelligently to user behavior.
+TractStack is a new species of web 2.0 making it possible for millions of websites to adapt to each visitor instead of showing everyone the same thing. It's an **adaptive website builder** that creates fast, beautiful, SEO-ready, and accessible websites that respond intelligently to user behavior.
 
 Built on [Astro](https://astro.build/) with [HTMX](https://htmx.org/) and a [Golang](https://go.dev/) backend, TractStack uses SQLite by default with optional [Turso](https://app.turso.tech/) cloud database support.
 
