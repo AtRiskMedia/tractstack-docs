@@ -67,66 +67,162 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: "Start here",
+          label: "Getting Started",
           items: [
             {
               label: "Getting Started",
               link: "/",
             },
-            { label: "Installation", link: "/start/installation/" },
-            { label: "License", link: "/start/license/" },
-          ],
-        },
-        //{
-        //  label: "Examples",
-        //  items: [
-        //    {
-        //      label: "Sites built with Tract Stack",
-        //      link: "/examples/",
-        //    },
-        //    {
-        //      label: "Making Sneakypedia",
-        //      link: "/examples/sneakypedia",
-        //    },
-        //  ],
-        //  collapsed: true,
-        //},
-        {
-          label: "Core Concepts",
-          items: [
-            { label: "Pressed by Tract Stack", link: "/concepts/tractstack/" },
             {
-              label: "The best web stack",
-              link: "/concepts/astro/",
+              label: "What is TractStack?",
+              link: "/getting-started/what-is-tractstack/",
+            },
+            { label: "Quick Start", link: "/getting-started/quick-start/" },
+            {
+              label: "Core Concepts Overview",
+              link: "/getting-started/core-concepts-overview/",
+            },
+            {
+              label: "License & Pricing",
+              link: "/getting-started/license-pricing/",
             },
           ],
-          collapsed: true,
         },
         {
-          label: "Basics",
+          label: "Installation",
           items: [
-            { label: "Project structure", link: "/basics/structure/" },
-            { label: "Story Keep", link: "/basics/storykeep/" },
-            { label: "Unfolding magic paths", link: "/basics/magic-paths/" },
-            { label: "Story Fragments", link: "/basics/story-fragments/" },
-            { label: "Context Pages", link: "/basics/context-pages/" },
-            { label: "Impressions", link: "/basics/impressions/" },
+            { label: "Prerequisites", link: "/installation/prerequisites/" },
+            {
+              label: "Development Setup",
+              link: "/installation/development-setup/",
+            },
+            {
+              label: "Production Deployment",
+              link: "/installation/production-deployment/",
+            },
+            {
+              label: "SSL Configuration",
+              link: "/installation/ssl-configuration/",
+            },
           ],
-          collapsed: true,
         },
         {
-          label: "Recipes",
-          autogenerate: {
-            directory: "recipes",
-          },
-          collapsed: true,
+          label: "Configuration",
+          items: [
+            { label: "Initial Setup", link: "/configuration/initial-setup/" },
+            {
+              label: "Environment Variables",
+              link: "/configuration/environment-variables/",
+            },
+            {
+              label: "Database Options",
+              link: "/configuration/database-options/",
+            },
+            { label: "Domain & DNS", link: "/configuration/domain-dns/" },
+          ],
+        },
+        {
+          label: "User Guide",
+          items: [
+            {
+              label: "StoryKeep Dashboard",
+              link: "/user-guide/storykeep-dashboard/",
+            },
+            { label: "Analytics", link: "/user-guide/analytics/" },
+            {
+              label: "Content Management",
+              link: "/user-guide/content-management/",
+            },
+            { label: "Branding", link: "/user-guide/branding/" },
+            { label: "User Roles", link: "/user-guide/user-roles/" },
+          ],
+        },
+        {
+          label: "Creating Content",
+          items: [
+            {
+              label: "Story Fragments",
+              link: "/creating-content/story-fragments/",
+            },
+            {
+              label: "Context Pages",
+              link: "/creating-content/context-pages/",
+            },
+            {
+              label: "Menus & Navigation",
+              link: "/creating-content/menus-navigation/",
+            },
+            {
+              label: "Media Management",
+              link: "/creating-content/media-management/",
+            },
+          ],
+        },
+        {
+          label: "Magic Paths",
+          items: [
+            {
+              label: "Belief System Overview",
+              link: "/magic-paths/belief-system-overview/",
+            },
+            { label: "Widget Types", link: "/magic-paths/widget-types/" },
+            {
+              label: "Visibility Rules",
+              link: "/magic-paths/visibility-rules/",
+            },
+            {
+              label: "Progressive Disclosure",
+              link: "/magic-paths/progressive-disclosure/",
+            },
+          ],
+        },
+        {
+          label: "Advanced Features",
+          items: [
+            {
+              label: "Custom Code Hooks",
+              link: "/advanced-features/custom-code-hooks/",
+            },
+            {
+              label: "Impressions System",
+              link: "/advanced-features/impressions-system/",
+            },
+            {
+              label: "Analytics & Tracking",
+              link: "/advanced-features/analytics-tracking/",
+            },
+            {
+              label: "Multi-Tenant Management",
+              link: "/advanced-features/multi-tenant-management/",
+            },
+          ],
         },
         {
           label: "Integrations",
-          autogenerate: {
-            directory: "integrations",
-          },
-          collapsed: true,
+          items: [
+            {
+              label: "Google Analytics",
+              link: "/integrations/google-analytics/",
+            },
+            { label: "Assembly AI", link: "/integrations/assembly-ai/" },
+            { label: "Resend Email", link: "/integrations/resend-email/" },
+            { label: "Bunny CDN", link: "/integrations/bunny-cdn/" },
+          ],
+        },
+        {
+          label: "Operations",
+          items: [
+            {
+              label: "Service Management",
+              link: "/operations/service-management/",
+            },
+            { label: "Build System", link: "/operations/build-system/" },
+            {
+              label: "Monitoring & Logs",
+              link: "/operations/monitoring-logs/",
+            },
+            { label: "Troubleshooting", link: "/operations/troubleshooting/" },
+          ],
         },
       ],
     }),

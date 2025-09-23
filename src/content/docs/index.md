@@ -6,15 +6,14 @@ hero:
   image:
     file: ../../assets/oglogo.png
   actions:
-    - text: Read docs
-      link: /start/installation/
+    - text: What is Tract Stack
+      link: /getting-started/core-concepts-overview/
       icon: right-arrow
       variant: primary
-    - text: Try Now
-      link: https://tractstack.com?utm_source=docs&utm_medium=www&utm_campaign=starlight
-      icon: external
-      attrs:
-        target: _blank
+    - text: Quick Install
+      link: /getting-started/quick-start/
+      icon: right-arrow
+      variant: primary
 ---
 
 TractStack is a new species of web 2.0 making it possible for millions of websites to adapt to each visitor instead of showing everyone the same thing. It's an **adaptive website builder** that creates fast, beautiful, SEO-ready, and accessible websites that respond intelligently to user behavior.
