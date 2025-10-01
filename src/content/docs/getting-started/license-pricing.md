@@ -38,14 +38,14 @@ If you're an agency or developer looking to leverage TractStack for client work,
 
 ## For Investors & Cloud Providers
 
-Looking to offer TractStack as a managed service? We're open to partnerships and licensing discussions. Contact us at hello@tractstack.com to explore opportunities.
+Looking to offer TractStack as a managed service? We're open to partnerships and licensing discussions. Contact us at <hello@tractstack.com> to explore opportunities.
 
 ## Future MIT Conversion
 
 Every TractStack release automatically becomes MIT licensed after 2 years:
 
-- **TractStack v1.0** (Released 2023) → MIT in 2025
-- **TractStack v2.0** (Released 2024) → MIT in 2026
+- **TractStack v1.0** (Released 2024) → MIT in 2026
+- **TractStack v2.0** (Released 2025) → MIT in 2027
 - Future releases follow the same pattern
 
 ## Pricing Options
@@ -76,7 +76,7 @@ Need help with:
 - Priority support
 - Training and consulting
 
-Contact hello@tractstack.com for commercial support options.
+Contact <hello@tractstack.com> for commercial support options.
 
 ## License Text
 
@@ -84,8 +84,8 @@ The complete FSL-1.1-MIT license is available in the [LICENSE.md](https://github
 
 ## Questions?
 
-- **General licensing questions**: hello@tractstack.com
-- **Partnership inquiries**: hello@tractstack.com
+- **General licensing questions**: <hello@tractstack.com>
+- **Partnership inquiries**: <hello@tractstack.com>
 - **Technical support**: [GitHub Issues](https://github.com/AtRiskMedia/tractstack-go/issues)
 
 ---

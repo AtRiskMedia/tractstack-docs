@@ -18,7 +18,7 @@ When a user visits a TractStack-powered page, they see the default version that 
 **Here's how it works:**
 
 1. **User visits** a webpage with hidden content folds
-2. **Cache warms** and prepares personalized variants
+2. **Cache warms** and prepares content for delivery
 3. **User declares preferences** through UI interactions (zero-party data)
 4. **System updates state** for their session, story fragment, and tenant
 5. **Content unfolds** automatically via HTMX, revealing relevant sections
