@@ -15,7 +15,7 @@ Before installing TractStack, ensure your system meets these requirements. The i
 
 ### Node.js & npm
 
-- **Version**: Node.js 20 or higher
+- **Version**: Node.js 20 or higher (Node 24 is UNTESTED!! Use 20 or 22)
 - **Download**: [nodejs.org](https://nodejs.org/)
 - **Verify installation**: `node --version` and `npm --version`
 - **Note**: npm is included with Node.js
