@@ -3,9 +3,81 @@ title: Quick Start
 description: Get TractStack running in 15 minutes
 ---
 
-Get TractStack up and running on your local machine in just a few minutes. This quick start guide will have you exploring the platform without any complex configuration.
+Get TractStack up and running on your local machine in just a few minutes. This guide provides two paths to get started. Choose the one that works best for you.
 
-## Prerequisites
+- **Path 1: Docker (Recommended)**: The easiest way to start. Runs TractStack in a self-contained environment without needing to install Go or Node.js on your machine.
+- **Path 2: Local Installation**: For developers who want to set up the environment and edit the source code directly on their machine.
+
+---
+
+## Path 1: Docker Installation (Recommended)
+
+This method uses Docker to run the TractStack sandbox. The only prerequisite is to have Docker installed and running.
+
+### For Linux & macOS
+
+Copy and paste the following commands into your terminal.
+
+#### 1. Download and extract the Docker package
+
+```bash
+curl -O [https://get.tractstack.com/t8k-docker.tar.gz](https://get.tractstack.com/t8k-docker.tar.gz)
+tar -xzf t8k-docker.tar.gz
+cd tractstack-docker
+```
+
+#### 2. Build the Docker image
+
+```bash
+docker build -t tractstack-sandbox .
+```
+
+#### 3. Run the container
+
+```bash
+docker run -d --name my-tractstack-sandbox -p 4321:4321 -p 8080:8080 -v tractstack_data:/home/sandbox/t8k/t8k-go-server tractstack-sandbox
+```
+
+### For Windows (PowerShell)
+
+Copy and paste the following commands into your PowerShell terminal.
+
+#### 1. Download and extract the Docker package
+
+```PowerShell
+curl -OutFile t8k-docker.tar.gz [https://get.tractstack.com/t8k-docker.tar.gz](https://get.tractstack.com/t8k-docker.tar.gz)
+tar -xzf t8k-docker.tar.gz
+cd tractstack-docker
+```
+
+#### 2. Build the Docker image
+
+```PowerShell
+docker build -t tractstack-sandbox .
+```
+
+#### 3. Run the container
+
+```PowerShell
+docker run -d --name my-tractstack-sandbox -p 4321:4321 -p 8080:8080 -v tractstack_data:/home/sandbox/t8k/t8k-go-server tractstack-sandbox
+```
+
+### Access Your Site
+
+Once the container is running, your TractStack instance is ready.
+
+- **Access Your Site**: [http://localhost:4321](http://localhost:4321)
+- **Access StoryKeep (CMS)**: [http://localhost:4321/storykeep](http://localhost:4321/storykeep)
+
+For additional commands, such as viewing logs, stopping the container, or performing a full reset, please refer to the `README.md` file in the extracted folder.
+
+---
+
+## Path 2: Local Installation
+
+Install the necessary dependencies and run the TractStack source code directly on your machine.
+
+### Prerequisites
 
 Make sure you have these installed:
 
@@ -14,111 +86,52 @@ Make sure you have these installed:
 - **Git**
 - **npm**
 
-## One-Line Installation
+### One-Line Installation
+
+This command will download the source code, install dependencies, and set up a local development environment.
 
 ```bash
-curl -fsSL https://get.tractstack.com | bash
+curl -fsSL [https://get.tractstack.com](https://get.tractstack.com) | bash
 ```
 
-This will automatically:
-
-- Download TractStack source code
-- Install dependencies
-- Set up a local development environment
-- Install pnpm if needed
-
-## Manual Installation
+### Manual Installation
 
 If you prefer to download the installer first:
 
 ```bash
-wget https://get.tractstack.com/t8k-install.sh
+wget [https://get.tractstack.com/t8k-install.sh](https://get.tractstack.com/t8k-install.sh)
 chmod +x t8k-install.sh
 ./t8k-install.sh --quick
 ```
 
-## Starting TractStack
+### Starting TractStack
 
-After installation, you'll need two terminal windows:
+After installation, you'll need two terminal windows.
 
-### Terminal 1: Start the Go Backend
+**Terminal 1: Start the Go Backend**
 
 ```bash
 cd ~/t8k/src/tractstack-go
 ./tractstack-go
 ```
 
-You'll see output like:
-
-```
-[GIN-debug] Listening and serving HTTP on :10000
-TractStack backend running at http://localhost:10000
-```
-
-### Terminal 2: Start the Astro Frontend
+**Terminal 2: Start the Astro Frontend**
 
 ```bash
 cd ~/t8k/src/my-tractstack
 pnpm dev
 ```
 
-You'll see output like:
-
-```
-🚀 astro v5.x.x started in development mode
-┃ Local    http://localhost:4321/
-```
-
-## Access Your Site
+### Access Your Site
 
 Open your browser and go to:
 
-**http://localhost:4321**
+**<http://localhost:4321>**
 
 You should see your TractStack site running!
-
-## Access StoryKeep (CMS)
-
-To manage your content, visit the built-in CMS:
-
-**http://localhost:4321/storykeep**
-
-This is where you'll:
-
-- Create and edit pages
-- Configure belief-driven personalization
-- Monitor analytics
-- Manage site branding
-
-## What's Next?
-
-1. **Explore the demo content** - Click around and see how the adaptive content works
-2. **Try StoryKeep** - Create your first page or modify existing content
-3. **Learn about Magic Paths** - See how belief-driven personalization works
-4. **Check the analytics** - View real-time engagement tracking
-
-## Quick Development Setup
-
-This quick install creates a development environment at `~/t8k/` with:
-
-- **Source code** in `~/t8k/src/`
-- **Database** at `~/t8k/t8k-go-server/db/`
-- **Configuration** at `~/t8k/t8k-go-server/config/`
-- **Media files** at `~/t8k/t8k-go-server/config/default/media/`
-
-## Stopping TractStack
-
-To stop the development servers:
-
-1. Press `Ctrl+C` in both terminal windows
-2. Or close the terminal windows
 
 ## Next Steps
 
 - [Core Concepts Overview](/getting-started/core-concepts/) - Understand the key concepts
 - [Full Installation Guide](/installation/development-setup/) - For production deployments
 - [User Guide](/user-guide/storykeep-dashboard/) - Learn to use StoryKeep CMS
-
----
-
-_You're now ready to explore epistemic hypermedia! Start by visiting your local site and trying out the adaptive content features._
