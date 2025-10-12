@@ -44,7 +44,7 @@ Copy and paste the following commands into your PowerShell terminal.
 
 #### 1. Download and extract the Docker package
 
-```PowerShell
+```powershell
 curl -OutFile t8k-docker.tar.gz [https://get.tractstack.com/t8k-docker.tar.gz](https://get.tractstack.com/t8k-docker.tar.gz)
 tar -xzf t8k-docker.tar.gz
 cd tractstack-docker
@@ -52,13 +52,13 @@ cd tractstack-docker
 
 #### 2. Build the Docker image
 
-```PowerShell
+```powershell
 docker build -t tractstack-sandbox .
 ```
 
 #### 3. Run the container
 
-```PowerShell
+```powershell
 docker run -d --name my-tractstack-sandbox -p 4321:4321 -p 8080:8080 -v tractstack_data:/home/sandbox/t8k/t8k-go-server tractstack-sandbox
 ```
 
