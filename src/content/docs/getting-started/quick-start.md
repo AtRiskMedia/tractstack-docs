@@ -82,7 +82,7 @@ Install the necessary dependencies and run the TractStack source code directly o
 Make sure you have these installed:
 
 - **Go 1.22** or higher
-- **Node.js 20** or higher
+- **Node.js** 20 or higher (Node 24 is UNTESTED!! Use 20 or 22)
 - **Git**
 - **npm**
 
