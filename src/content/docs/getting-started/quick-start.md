@@ -21,7 +21,7 @@ Copy and paste the following commands into your terminal.
 #### 1. Download and extract the Docker package
 
 ```bash
-curl -O [https://get.tractstack.com/t8k-docker.tar.gz](https://get.tractstack.com/t8k-docker.tar.gz)
+curl -O https://get.tractstack.com/t8k-docker.tar.gz
 tar -xzf t8k-docker.tar.gz
 cd tractstack-docker
 ```
@@ -45,7 +45,7 @@ Copy and paste the following commands into your PowerShell terminal.
 #### 1. Download and extract the Docker package
 
 ```powershell
-curl -OutFile t8k-docker.tar.gz [https://get.tractstack.com/t8k-docker.tar.gz](https://get.tractstack.com/t8k-docker.tar.gz)
+curl -OutFile t8k-docker.tar.gz https://get.tractstack.com/t8k-docker.tar.gz
 tar -xzf t8k-docker.tar.gz
 cd tractstack-docker
 ```
@@ -91,7 +91,7 @@ Make sure you have these installed:
 This command will download the source code, install dependencies, and set up a local development environment.
 
 ```bash
-curl -fsSL [https://get.tractstack.com](https://get.tractstack.com) | bash
+curl -fsSL https://get.tractstack.com | bash
 ```
 
 ### Manual Installation
@@ -99,7 +99,7 @@ curl -fsSL [https://get.tractstack.com](https://get.tractstack.com) | bash
 If you prefer to download the installer first:
 
 ```bash
-wget [https://get.tractstack.com/t8k-install.sh](https://get.tractstack.com/t8k-install.sh)
+wget https://get.tractstack.com/t8k-install.sh
 chmod +x t8k-install.sh
 ./t8k-install.sh --quick
 ```
