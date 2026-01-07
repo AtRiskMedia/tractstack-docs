@@ -3,7 +3,7 @@ title: License & Pricing
 description: Open Source Freedom. Wholesale Business Model.
 ---
 
-Tract Stack is **Open Source**. It is released under the **O'Saasy License** - a modern standard designed to keep the "Free Web" sustainable.
+Tract Stack is **Open Source**. It is released under the [O'Saasy License](https://osaasy.dev/) - a modern standard designed to keep the "Free Web" sustainable.
 
 But we offer more than just code. We offer a business model transformation for Agencies.
 

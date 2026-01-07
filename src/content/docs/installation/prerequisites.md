@@ -1,204 +1,130 @@
 ---
 title: Prerequisites
-description: System requirements and essential tools
+description: System requirements based on your installation path
 ---
 
-Before installing TractStack, ensure your system meets these requirements. The installation process will check for these prerequisites and guide you through any missing components.
+Before installing TractStack, identify your use case. You can run TractStack natively for development, as a production service on Linux, or as a portable appliance via Docker.
 
-## Essential Developer Tools
+---
+
+## 1. Choose Your Path
+
+### A. Docker (Recommended for Mac/Windows)
+
+The most reliable way to run TractStack on macOS or Windows. It packages all dependencies (Go, Node, Python, and SQLite) into a single container.
+
+- **Requirements**: [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+- **Benefits**: No need to install Go, Node.js, or Python on your host machine.
+
+### B. Native Development
+
+Best for users who want to modify core Go or Astro code directly on their machine with their own IDE.
+
+- **OS Support**: macOS, Linux, or Windows (via WSL2).
+- **Requirements**: See [Essential Developer Tools](#essential-developer-tools) below.
+
+### C. Production Deployment
+
+For high-performance, live environments configured with security and process management.
+
+- **OS Support**: Linux (Ubuntu/Debian recommended).
+- **Requirements**: See [Production Requirements](#production-requirements) below.
+
+---
+
+## 2. Essential Developer Tools (Native Path)
+
+If you are **not** using Docker, ensure these tools are installed and available in your system PATH:
 
 ### Go Programming Language
 
-- **Version**: Go 1.22 or higher
-- **Download**: [golang.org/dl](https://golang.org/dl/)
-- **Verify installation**: `go version`
+- **Version**: Go 1.22 or higher.
+- **Note**: The backend requires SQLite with FTS5 support (included in the default build tags).
+- **Verify**: `go version`
 
 ### Node.js & npm
 
-- **Version**: Node.js 20 or higher (Node 24 is UNTESTED!! Use 20 or 22)
-- **Download**: [nodejs.org](https://nodejs.org/)
-- **Verify installation**: `node --version` and `npm --version`
-- **Note**: npm is included with Node.js
+- **Version**: Node.js 20 or 22 (Node 24 is currently UNTESTED).
+- **Verify**: `node --version`
 
-### Git Version Control
+### Python 3 & BeautifulSoup4
 
-- **Required for**: Cloning repositories and version control
-- **Download**: [git-scm.com](https://git-scm.com/)
-- **Verify installation**: `git --version`
+- **Required for**: Automated Tailwind CSS whitelist extraction for the Go backend templates.
+- **Install**: `pip3 install beautifulsoup4` or `apt install python3-bs4`
+- **Verify**: `python3 -c "import bs4; print('ok')"`
 
 ### pnpm Package Manager
 
-- **Auto-installed**: The installer will add pnpm if missing
+- **Note**: TractStack uses pnpm for faster, more efficient dependency management.
 - **Manual install**: `npm install -g pnpm`
-- **Why pnpm**: Faster, more efficient package management than npm
-
-## Production Requirements (Additional)
-
-For production deployments, you'll also need:
-
-### Web Server
-
-- **nginx** - For reverse proxy and SSL termination
-- **Installation**: Available in all major Linux distributions
-- **Ubuntu/Debian**: `sudo apt install nginx`
-- **CentOS/RHEL**: `sudo yum install nginx`
-
-### Process Manager
-
-- **PM2** - For Node.js process management and monitoring
-- **Installation**: `npm install -g pm2`
-- **Features**: Auto-restart, logging, clustering
-
-### System Service Manager
-
-- **systemd** - For automatic service startup (Linux only)
-- **Included**: Standard on modern Linux distributions
-- **Used for**: Go backend service management
-
-### System Permissions
-
-- **sudo access** - Required for production installation
-- **User creation**: Installer creates dedicated `t8k` user
-- **Port binding**: For services on ports 80/443
-
-### SSL Certificates
-
-- **Let's Encrypt** integration included
-- **Automated**: With Cloudflare DNS API
-- **Manual**: DNS verification for other providers
-
-## Operating System Support
-
-### Fully Supported
-
-- **Linux distributions**: Ubuntu, Debian, CentOS, RHEL, Fedora
-- **macOS**: Development and testing
-- **Windows**: Via WSL2 (Windows Subsystem for Linux)
-
-### Recommended for Production
-
-- **Ubuntu 20.04 LTS** or newer
-- **Debian 11** or newer
-- **CentOS 8** or newer
-
-## Hardware Requirements
-
-### Minimum (Development)
-
-- **RAM**: 2GB available
-- **Storage**: 1GB free space
-- **CPU**: Any modern processor
-
-### Recommended (Production)
-
-- **RAM**: 4GB+ available
-- **Storage**: 10GB+ free space (for logs, media, database)
-- **CPU**: 2+ cores
-- **Network**: Stable internet connection for SSL certificates
-
-## Optional Enhancements
-
-### Database Options
-
-- **SQLite** (default) - Zero configuration, included
-- **Turso** - Cloud SQLite with global replication
-- **Custom**: Other databases via configuration
-
-### CDN Integration
-
-- **Bunny.net** - For video streaming
-- **CloudFlare** - For DNS and SSL automation
-- **Custom**: Any CDN via configuration
-
-### External Services
-
-- **Assembly AI** - For AI-powered content analysis
-- **Resend** - For transactional email
-- **Google Analytics** - For additional analytics
-
-## Verification Commands
-
-Run these commands to verify your system is ready:
-
-```bash
-# Check Go installation
-go version
-# Expected: go version go1.22.x
-
-# Check Node.js installation
-node --version
-# Expected: v20.x.x or higher
-
-# Check npm installation
-npm --version
-# Expected: 10.x.x or higher
-
-# Check Git installation
-git --version
-# Expected: git version 2.x.x
-
-# Check available disk space
-df -h
-# Ensure at least 1GB free space
-
-# Check available memory
-free -h
-# Ensure at least 2GB available
-```
-
-## Network Requirements
-
-### Development
-
-- **Outbound HTTPS (443)**: For downloading dependencies
-- **Local ports**: 4321 (Astro), 10000 (Go backend)
-
-### Production
-
-- **Inbound HTTP (80)**: For web traffic and SSL verification
-- **Inbound HTTPS (443)**: For secure web traffic
-- **Outbound HTTPS (443)**: For SSL certificates and updates
-- **DNS access**: For domain resolution and SSL verification
-
-## Troubleshooting Prerequisites
-
-### Go Installation Issues
-
-```bash
-# Verify GOPATH and GOROOT
-go env GOPATH
-go env GOROOT
-
-# Check PATH includes Go binary
-echo $PATH | grep go
-```
-
-### Node.js Version Issues
-
-```bash
-# Use Node Version Manager (nvm) for multiple versions
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-nvm install 20
-nvm use 20
-```
-
-### Permission Issues (Linux/macOS)
-
-```bash
-# Fix npm global permissions
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.profile
-source ~/.profile
-```
-
-### WSL2 Setup (Windows)
-
-1. Enable WSL2 in Windows Features
-2. Install Ubuntu from Microsoft Store
-3. Run Ubuntu and install prerequisites inside WSL2
-4. Use WSL2 terminal for all TractStack commands
 
 ---
 
-_Once these prerequisites are met, you're ready to proceed with the [Development Setup](/installation/development-setup/) or [Production Deployment](/installation/production-deployment/)._
+## 3. Production Requirements (Additional)
+
+For bare-metal production deployments on Linux, you also need the following system-level components:
+
+### Web Server & Utilities
+
+- **nginx**: Acts as the reverse proxy for SSL termination and static media serving.
+- **socat**: Required by the SSL issuance scripts for ACME challenges.
+- **systemd**: Standard on modern Linux; used to manage the Go backend as a background service.
+
+### Process Manager
+
+- **PM2**: Manages the Astro/Node.js frontend processes and provides auto-restart capabilities.
+- **Installation**: `npm install -g pm2`
+
+### System Permissions
+
+- **sudo access**: Required to create the dedicated `t8k` user and bind to web ports.
+- **t8k User**: The installer creates a dedicated system user (`t8k`) to isolate service permissions.
+- **Nginx Access**: The installer automatically adds `www-data` to the `t8k` group for media access.
+
+---
+
+## 4. Hardware Requirements
+
+| Requirement | Minimum (Dev/Docker) | Recommended (Production)        |
+| :---------- | :------------------- | :------------------------------ |
+| **RAM**     | 2GB Available        | 4GB+ Available                  |
+| **Storage** | 1GB Free Space       | 10GB+ (for logs, media, and DB) |
+| **CPU**     | Any modern processor | 2+ Cores                        |
+
+---
+
+## 5. Network Requirements
+
+### Internal Ports
+
+- **Astro Frontend**: 4321
+- **Go Backend**: 8080 (Docker/Dev) or 10000+ (Production)
+
+### External Ports (Production)
+
+- **HTTP (Port 80)**: For initial web traffic and SSL verification.
+- **HTTPS (Port 443)**: For secure production web traffic.
+
+---
+
+## 6. Verification Commands
+
+Run these to confirm your environment is ready for the **Native Path**:
+
+```bash
+# Check Go
+go version
+# Expected: go version go1.22.x or higher
+
+# Check Node
+node --version
+# Expected: v20.x or v22.x
+
+# Check Python Libs
+python3 -c "import bs4; print('bs4 ok')"
+# Expected: bs4 ok
+
+# Check Docker (if using Docker Path)
+docker --version
+# Expected: Docker version x.x.x
+```

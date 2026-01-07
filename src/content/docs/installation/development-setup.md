@@ -3,74 +3,89 @@ title: Development Setup
 description: Local development installation for testing and building
 ---
 
-The development setup creates a local TractStack environment perfect for learning, testing, and building your site before deploying to production.
+The development setup creates a local TractStack environment perfect for learning, testing, and building your site. You can choose between a native installation or a containerized Docker setup.
 
-## Quick Development Install
+## 1. Choose Your Development Path
 
-### One-Line Installation
+### Path A: Docker (Recommended for Mac/Windows)
+
+The fastest way to get started. It uses a self-contained appliance to handle all dependencies, including Go, Node.js, and Python.
+
+**1. Build the Image**
 
 ```bash
-curl -fsSL https://get.tractstack.com | bash
+docker build -t tractstack-sandbox .
 ```
 
-This automatically performs a quick development install in your home directory.
-
-### Manual Installation
-
-If you prefer to download the installer first:
+**2. Run the Container**
 
 ```bash
-wget https://get.tractstack.com/t8k-install.sh
+docker run -d --name my-tractstack-sandbox \
+  -p 4321:4321 -p 8080:8080 \
+  -v tractstack_data:/home/sandbox/t8k/t8k-go-server \
+  tractstack-sandbox
+```
+
+**3. Access Your Environment**
+
+- **Frontend**: [http://localhost:4321](http://localhost:4321)
+- **Backend API**: [http://localhost:8080](http://localhost:8080)
+
+---
+
+### Path B: Native Installation
+
+Best for users who want to modify core Go or Astro code directly on their host machine. Requires all Prerequisites to be installed locally.
+
+**One-Line Installation**
+
+```bash
+curl -fsSL [https://get.tractstack.com](https://get.tractstack.com) | bash
+```
+
+**Manual Installation**
+
+```bash
+wget [https://get.tractstack.com/t8k-install.sh](https://get.tractstack.com/t8k-install.sh)
 chmod +x t8k-install.sh
 ./t8k-install.sh --quick
 ```
 
-## Installation Process
-
-The installer will:
+**Installation Process**
+The native installer will:
 
 1. **Create directory structure** at `~/t8k/`
-2. **Clone repositories**:
-   - `tractstack-go` (backend)
-   - `my-tractstack` (frontend)
-3. **Install dependencies**:
-   - Go modules for backend
-   - Node.js packages for frontend
-   - pnpm if not present
-4. **Build binaries**:
-   - Compile Go backend
-   - Prepare Astro frontend
-5. **Create configuration files**
-6. **Set up local database** (SQLite)
+2. **Clone repositories**: `tractstack-go` (backend) and `my-tractstack` (frontend)
+3. **Install dependencies**: Go modules, Node packages, and pnpm
+4. **Build binaries**: Compile Go backend and prepare the Astro frontend
+5. **Set up local database**: Initialize SQLite in `~/t8k/t8k-go-server/`
 
-## Directory Structure
+---
 
-After installation, you'll have:
+## 2. Directory Structure
+
+Regardless of your path, the internal TractStack structure remains consistent:
 
 ```
-~/t8k/
+t8k/
 ├── src/
 │   ├── tractstack-go/          # Go backend source
 │   │   ├── tractstack-go       # Compiled binary
-│   │   ├── .env               # Backend configuration
-│   │   └── ...
-│   └── my-tractstack/         # Astro frontend source
-│       ├── dist/              # Built static files
-│       ├── .env               # Frontend configuration
-│       ├── astro.config.mjs   # Astro configuration
-│       └── ...
-└── t8k-go-server/            # Data directory
-    ├── config/default/       # Configuration files
-    │   ├── env.json          # Core settings
-    │   ├── brand.json        # Site branding
-    │   └── media/           # Uploaded files
-    └── db/default/          # Database files
-        └── tractstack.db    # SQLite database
+│   │   └── .env                # Backend configuration
+│   └── my-tractstack/          # Astro frontend source
+│       ├── .env                # Frontend configuration
+│       └── astro.config.mjs    # Astro configuration
+└── t8k-go-server/              # Data directory (Persistent Volume)
+    ├── config/default/         # Site settings and Branding
+    │   └── media/              # Uploaded files
+    └── db/default/             # SQLite database files
 ```
 
-## Starting Development Servers
+---
 
-You need two terminal windows to run TractStack:
+## 3. Starting Development Servers (Native Only)
+
+If using the **Native Path**, you must run two terminal windows. (Docker handles this automatically).
 
 ### Terminal 1: Go Backend
 
@@ -79,15 +94,7 @@ cd ~/t8k/src/tractstack-go
 ./tractstack-go
 ```
 
-**Expected output:**
-
-```
-[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
-[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
-[GIN-debug] Listening and serving HTTP on :10000
-```
-
-The backend runs on **http://localhost:10000**
+_Expected: Listening and serving HTTP on :10000_
 
 ### Terminal 2: Astro Frontend
 
@@ -96,173 +103,66 @@ cd ~/t8k/src/my-tractstack
 pnpm dev
 ```
 
-**Expected output:**
-
-```
-🚀 astro v5.x.x started in development mode
-┃ Local    http://localhost:4321/
-┃ Network  use --host to expose
-```
-
-The frontend runs on **http://localhost:4321**
-
-## Accessing Your Site
-
-### Main Website
-
-Open **http://localhost:4321** in your browser
-
-You should see the TractStack demo site with sample content.
-
-### StoryKeep CMS
-
-Visit **http://localhost:4321/storykeep** to access the content management system.
-
-**Default credentials** (development only):
-
-- Username: `admin`
-- Password: `password`
-
-## Development Features
-
-### Hot Reloading
-
-- **Frontend changes**: Astro automatically reloads when you edit files
-- **Backend changes**: Restart the Go server to see changes
-
-### Live Database
-
-- **SQLite database** at `~/t8k/t8k-go-server/db/default/tractstack.db`
-- **Data persists** between restarts
-- **Reset database**: Delete the file to start fresh
-
-### Configuration Files
-
-- **Backend**: `~/t8k/src/tractstack-go/.env`
-- **Frontend**: `~/t8k/src/my-tractstack/.env`
-- **Site settings**: `~/t8k/t8k-go-server/config/default/env.json`
-
-## Development Workflow
-
-### Making Content Changes
-
-1. **Edit content** via StoryKeep CMS at `/storykeep`
-2. **Changes reflect immediately** on the frontend
-3. **Database updates automatically**
-
-### Customizing Code
-
-1. **Frontend changes**: Edit files in `~/t8k/src/my-tractstack/`
-2. **Backend changes**: Edit Go files in `~/t8k/src/tractstack-go/`
-3. **Restart backend** after Go code changes
-4. **Frontend hot-reloads** automatically
-
-### Adding Custom Components
-
-1. **Edit** `~/t8k/src/my-tractstack/src/custom/CodeHook.astro`
-2. **Add your components** to the custom directory
-3. **Register** new components in the dispatcher
-
-## Stopping Development Servers
-
-To stop TractStack:
-
-1. **Press Ctrl+C** in both terminal windows
-2. **Or close** the terminal windows
-
-Data is automatically saved and will be available when you restart.
-
-## Troubleshooting Development Setup
-
-### Port Already in Use
-
-If ports 4321 or 10000 are busy:
-
-```bash
-# Find what's using the port
-lsof -i :4321
-lsof -i :10000
-
-# Kill the process if needed
-kill -9 <PID>
-```
-
-### Go Build Errors
-
-```bash
-cd ~/t8k/src/tractstack-go
-go mod tidy
-go build
-```
-
-### Node/Astro Errors
-
-```bash
-cd ~/t8k/src/my-tractstack
-rm -rf node_modules
-pnpm install
-```
-
-### Database Issues
-
-Reset the database:
-
-```bash
-rm ~/t8k/t8k-go-server/db/default/tractstack.db
-# Restart the Go backend to recreate
-```
-
-### Permission Issues
-
-Fix ownership:
-
-```bash
-sudo chown -R $USER:$USER ~/t8k/
-```
-
-## Development Configuration
-
-### Environment Variables
-
-**Backend** (`~/t8k/src/tractstack-go/.env`):
-
-```bash
-GIN_MODE=debug
-DB_PATH=../../t8k-go-server/db/default/tractstack.db
-CONFIG_PATH=../../t8k-go-server/config
-MEDIA_PATH=../../t8k-go-server/config/default/media
-PORT=10000
-```
-
-**Frontend** (`~/t8k/src/my-tractstack/.env`):
-
-```bash
-PUBLIC_GO_BACKEND=http://localhost:10000
-PUBLIC_TENANTID=default
-PUBLIC_ENABLE_MULTI_TENANT=false
-```
-
-### Site Configuration
-
-Edit `~/t8k/t8k-go-server/config/default/env.json` for site settings:
-
-```json
-{
-  "SITE_URL": "http://localhost:4321",
-  "SITE_INIT": true,
-  "HOME_SLUG": "hello",
-  "ADMIN_PASSWORD_HASH": "...",
-  "EDITOR_PASSWORD_HASH": "..."
-}
-```
-
-## Next Steps
-
-- **Explore the demo content** and see how adaptive features work
-- **Try editing content** through StoryKeep
-- **Read about Magic Paths** to understand belief-driven personalization
-- **When ready for production**, see [Production Deployment](/installation/production-deployment/)
+_Expected: Local <http://localhost:4321/>_
 
 ---
 
-_Development setup is perfect for learning TractStack and building your site. When you're ready to go live, the production deployment guide will help you deploy securely._
+## 4. Accessing Your Site
+
+### Main Website
+
+Open **<http://localhost:4321>** in your browser to see the demo site with sample content.
+
+### StoryKeep CMS
+
+Visit **<http://localhost:4321/storykeep>** to access the content management system.
+
+**Default credentials** (development only):
+
+- **Username**: `admin`
+- **Password**: `password`
+
+---
+
+## 5. Development Workflow
+
+### Hot Reloading
+
+- **Frontend**: Astro automatically reloads when you edit files in `src/my-tractstack/`.
+- **Backend**: You must restart the Go server (or the Docker container) to see changes to Go source code.
+
+### Live Database
+
+- **SQLite Persistence**: Data persists between restarts in the `t8k-go-server/db/` directory.
+- **Reset Database**: Delete `tractstack.db` to start fresh. If using Docker, run `docker volume rm tractstack_data`.
+
+### Customizing Code
+
+1. **Frontend**: Edit files in `~/t8k/src/my-tractstack/`.
+2. **Backend**: Edit Go files in `~/t8k/src/tractstack-go/`.
+3. **Custom Components**: Edit `~/t8k/src/my-tractstack/src/custom/CodeHook.astro` to add your own adaptive logic.
+
+---
+
+## 6. Troubleshooting
+
+### Port Already in Use
+
+If ports 4321 or 10000/8080 are busy:
+
+```bash
+lsof -i :4321
+kill -9 <PID>
+```
+
+### Permission Issues (Docker)
+
+The Docker appliance includes an `entrypoint.sh` script that automatically fixes ownership of the `t8k-go-server` volume. If you encounter permission errors on the host, ensure Docker has permission to write to its designated volumes.
+
+### Native Build Errors
+
+Ensure your Go version is 1.22+ and you have `python3-bs4` installed for Tailwind whitelisting.
+
+---
+
+_Once your development environment is running, you can explore **[Adaptive Content](/concepts/adaptive-content/)** or prepare for **[Production Deployment](/installation/production-deployment/)**._
