@@ -1,98 +1,74 @@
 ---
-title: What is TractStack?
-description: Epistemic hypermedia platform for adaptive websites
+title: What is Tract Stack?
+description: The adaptive engine for the free web
 ---
 
-TractStack is a new species of web 2.0 making it possible for millions of websites to adapt to each visitor instead of showing everyone the same thing. It's an **adaptive website builder** that creates fast, beautiful, SEO-ready, and accessible websites that respond intelligently to user behavior.
+Tract Stack is the **Adaptive Engine** for the Free Web. It creates privacy-first, responsive websites that treat every visitor like an individual, not a statistic.
 
-Built on [Astro](https://astro.build/) with [HTMX](https://htmx.org/) and a [Golang](https://go.dev/) backend, TractStack uses SQLite by default with optional [Turso](https://app.turso.tech/) cloud database support.
+Traditional websites are static monologues - they show the exact same page to everyone. Tract Stack allows you to **press engagement** by building a "Smart Tract": a living narrative that listens to user behavior and adapts the content in real-time.
 
-## What is Epistemic Hypermedia?
+Built on the bleeding edge of performance: [Astro](https://astro.build/) for speed, [HTMX](https://htmx.org/) for fluid interactivity, and a compiled [Golang](https://go.dev/) backend for state management.
 
-Epistemic hypermedia represents a fundamental shift from traditional web personalization. Instead of inferring user preferences through behavioral tracking, it enables visitors to directly declare their beliefs and interests, creating personalized experiences through **progressive disclosure**.
+## The Philosophy: Stop Guessing, Start Asking
 
-### The Core Concept
+Current web personalization is broken. It relies on **Behavioural Inference** - digital stalking disguised as customer service.
 
-When a user visits a TractStack-powered page, they see the default version that everyone does. But hidden within that page are countless "folds" - content variants that only reveal themselves when someone signals specific beliefs or interests.
+- **The Assumption:** Netflix thinks you love action movies because you watched one Jason Statham film.
+- **The Reality:** You were just bored on a Tuesday.
 
-**Here's how it works:**
+This is the **"Assumption Web."** It guesses, and it usually gets it wrong.
 
-1. **User visits** a webpage with hidden content folds
-2. **Cache warms** and prepares content for delivery
-3. **User declares preferences** through UI interactions (zero-party data)
-4. **System updates state** for their session, story fragment, and tenant
-5. **Content unfolds** automatically via HTMX, revealing relevant sections
-6. **Seamless experience** - no page refresh, just intelligent content revelation
+### The Solution: Declarative Adaptation
 
-This creates a **privacy-first, user data-driven journey** where personalization happens through explicit choice rather than surveillance.
+Tract Stack represents a fundamental shift. Instead of inferring what a user wants, **we let the user tell us.**
 
-## Why Epistemic Hypermedia Changes Everything
+When a visitor interacts with a Tract Stack site, they aren't just clicking links; they are signaling intent. The system listens to these signals (declarations) and updates the narrative instantly. We call this **"The Mass-Produced Handshake"**.
 
-### The Problem with Traditional Personalization
+## How It Works: The "Hidden Door"
 
-Current web personalization is fundamentally broken because it's based on **behavior inference** - digital stalking disguised as customer service:
+On a standard website, what you see is what you get. On a Tract Stack site, the page is a series of **"Hidden Doors."**
 
-- Netflix thinks you like action movies because you watched one Jason Statham film
-- Amazon recommends baby products because you bought a gift for your nephew
-- LinkedIn serves AI startup ads because you read one ChatGPT article
+Every page contains "folds" - content variants that are invisible by default. These doors only open when a user signals they are ready to walk through them.
 
-### The Epistemic Solution
+1. **The Visit:** User arrives. The "Public" content loads instantly.
+2. **The Signal:** User interacts (clicks a button, answers a poll, lingers on a section).
+3. **The Handshake:** The Logic Engine updates the user's state securely (Server-Side).
+4. **The Reveal:** The "Hidden Door" opens via HTMX, revealing tailored content without a page refresh.
 
-Instead of guessing what people want, **epistemic hypermedia just asks them**. This creates:
+This creates a **privacy-first journey**. The personalization happens because the user _chose_ it, not because a cookie tracked them.
 
-- **Authentic personalization** based on declared preferences
-- **Privacy-first experiences** without tracking or cookies
-- **Progressive disclosure** that reveals relevant content naturally
-- **Belief-driven interactions** that respect user agency
+## Key Capabilities
 
-## Key Features
+### The "Press" (Story Keep)
 
-### Story Keep Web Application
+You don't just build pages; you manage a **Brand Universe**. The internal editor allows you to:
 
-TractStack includes a complete content management system where you can:
+- **Design by Prompt:** Create sections instantly using Generative Architecture.
+- **Define Logic:** Set the rules for which "Hidden Doors" open for which users.
+- **Protect Integrity:** All content is stored as semantic Markdown, ensuring that even dynamic content is fully indexable by search engines.
 
-- Log in to manage your TractStack installation
-- Edit and create new web pages
-- Configure content folds and personalization rules
-- Monitor engagement analytics
+### Signal Analytics (Listening, Not Tracking)
 
-### SEO-Friendly by Design
+Traditional analytics measure "Hits." Tract Stack measures **Attention**. Because the system is server-side, we can see exactly where the conversation thrives and where it dies.
 
-All SEO best practices are "pressed" in automatically:
+**The Listening Events:**
 
-- **Technical SEO** optimization
-- **Semantic HTML** structure
-- **Accessibility (A11y)** compliance
-- **Next-gen image formats** for performance
-- **Social sharing** optimization
-- **Privacy-first analytics** built-in
+- `GLOSSED` - They scanned it.
+- `READ` - They absorbed it.
+- `WATCHED` - They engaged with video.
+- `CLICKED` - They signaled intent.
 
-### Engagement Analytics
+### The Conversion Engine
 
-TractStack monitors what holds your audience's attention as they interact with content. Each section of every page becomes a touchpoint for engagement and audience insights.
+Conversion isn't magic; it's timing.
+With Tract Stack, you don't show a "Buy Now" button to a stranger. You create **Magic Paths** - tailored calls-to-action that only appear once the user has signaled enough interest to be receptive.
 
-**Out-of-box tracking events:**
+## The Problem We Solve
 
-- `GLOSSED` - User briefly viewed content
-- `READ` - User spent time reading content
-- `CLICKED` - User interacted with elements
-- `ENTERED` - User arrived at content
-- `PAGEVIEWED` - User loaded the page
-- `WATCHED` - User engaged with media content
-
-### Conversion Rate Optimization Made Simple
-
-Conversion means something different for every business - making sales, receiving donations, getting waitlist sign-ups, booking clients, or any goal you define.
-
-With TractStack, you can add **magic paths** to better engage each visitor. Based on how they've interacted with your site, tailored calls-to-action appear at precisely the right moment.
-
-## Common Pain Points Solved
-
-- Serving diverse customers with one-size-fits-all experiences
-- Low conversion rates despite heavy personalization investment
-- Privacy compliance concerns with tracking-based systems
-- Inability to deliver truly relevant content experiences
+- **For the Brand:** Stops you from burning your best traffic with generic messaging.
+- **For the User:** No more creepy surveillance. Just a website that actually listens.
+- **For the Tech Stack:** No plugins, no bloat. Just a compiled, secure, high-performance engine.
 
 ---
 
-_TractStack: Where every webpage becomes a personalized conversation that respects privacy while delivering genuinely relevant experiences._
+_The "Free Web" Press by At Risk Media_

@@ -1,71 +1,79 @@
 ---
 title: License & Pricing
-description: Source-Available under the O'Saasy License
+description: Open Source Freedom. Wholesale Business Model.
 ---
 
-Tract Stack is released under the **O'Saasy License**. This is a permissive source-available license based on MIT, but with a specific restriction against selling the software as a competing service.
+Tract Stack is **Open Source**. It is released under the **O'Saasy License** - a modern standard designed to keep the "Free Web" sustainable.
 
-## Why O'Saasy?
+But we offer more than just code. We offer a business model transformation for Agencies.
 
-The O'Saasy license was originally popularized by 37signals (for Fizzy) to solve a specific problem: allowing developers to learn from and use code freely, without allowing cloud giants to package and resell that hard work.
+## The Philosophy: Open for Builders, Closed for Vampires
 
-Basically… it is the **MIT do-whatever-you-want license**, but with the commercial rights for SaaS (Software-as-a-Service) reserved for the copyright holder.
+The original definition of Open Source allowed Cloud Giants to strip-mine value from creators. The O'Saasy license fixes this.
 
-## What You Can Do
+**Tract Stack is Open Source software.** You can read, modify, deploy, and build upon it freely. The license simply prevents "Digital Sharecropping" - you cannot wrap our hard work and resell it as a generic, competing SaaS platform.
 
-✅ **Use Tract Stack for commercial projects**
-✅ **Modify the source code for your needs**
-✅ **Build client websites and charge for your services**
-✅ **Deploy on your own infrastructure**
-✅ **Create internal business applications**
-✅ **Distribute your modifications (under same license)**
+## For Agencies: The Landlord Model
 
-## What You Cannot Do
+Agencies are often stuck renting their time, selling low-margin maintenance to clients trapped in the past.
 
-❌ **Sell Tract Stack as a hosted service**
-❌ **Compete directly with Tract Stack's business model**
-❌ **Redistribute as a commercial SaaS product**
+We give you a way to **own the infrastructure**.
 
-## Is This Open Source?
+### 1. The Wholesale DXP (Managed)
 
-Technically, no. The Open Source Initiative (OSI) definition requires no restrictions on field of use. Because O'Saasy restricts "SaaS" usage, it is considered **Source Available**.
+Stop selling "Website Maintenance." Sell a "Digital Experience Platform."
 
-However, in practical terms, you are free to use Tract Stack as though it were MIT open-source for almost all use cases. The only prohibited use is re-selling "Tract Stack as a Service" or a managed cloud version without explicit consent.
+- **We provide the engine** (Hosting, Security, Updates) at a flat wholesale rate.
+- **You set the retail price** and keep 100% of the margin.
+- **The Result:** You become the Landlord. We just maintain the plumbing.
 
-## For Agencies & Developers
+### 2. Custom Code Collaboration
 
-If you're an agency or developer looking to leverage Tract Stack for client work, you're completely covered. Build as many sites as you want, charge your clients, and modify the code. As long as you aren't launching a "Tract Stack Hosting" platform that competes with us, you are clear.
+For complex client needs, you don't have to go it alone. Our engineering team is available for custom code collaborations behind the scenes. We ensure the logic holds up so you can **focus on the strategy**.
 
-## For Investors & Cloud Providers
+## What You Can Do (The Builder's Rights)
 
-Looking to offer Tract Stack as a managed service? We're open to partnerships and licensing discussions. Contact us at <hello@tractstack.com> to explore opportunities.
+If you prefer to self-host, the O'Saasy license guarantees your freedom:
 
-## Pricing Options
+- **Build Empires:** Create complex, high-value client websites.
+- **Modify the Engine:** Tear the code apart and rebuild it.
+- **Own the Infrastructure:** Deploy Tract Stack on your own servers or any cloud you choose.
+- **Internal Tools:** Build internal business applications without limit.
 
-### Self-Hosted (Free)
+## What You Cannot Do (The "AWS Clause")
 
-- Full source code access
-- All features included
-- Community support
+- **Sell "Tract Stack-as-a-Service":** You cannot wrap the software and sell it as a hosted platform that competes directly with us.
+- **White-Label Hosting:** You cannot launch generic "Managed Tract Stack" hosting where the primary value is just the software itself.
+
+**The Distinction:**
+
+- **Agency Model (Allowed):** "I am building a Smart Tract universe for my client." (You are selling _solution value_).
+- **Vulture Model (Prohibited):** "Sign up here for a hosted Tract Stack instance for $20/month." (You are reselling _our work_).
+
+## Pricing & Engagement Models
+
+### 1. Self-Hosted (Free)
+
+For the builders who want total control and zero overhead costs.
+
+- **Open Source Code**
+- Community Support
 - O'Saasy License
 
-### Managed Hosting
+### 2. Wholesale DXP (Managed)
 
-Looking for Tract Stack without the infrastructure management? Visit [tractstack.com](https://tractstack.com#pricing) for managed hosting options with:
+For agencies who want to secure recurring revenue without the DevOps headache.
 
-- Automated deployments
-- Priority support
+- Automated Deployments
+- Security Patching
+- **Flat Wholesale Pricing** (You own the markup)
 
-## Commercial Support
+### 3. Bespoke Builds (We Drive, You Navigate)
 
-Need help with:
+We are a product company, but we keep a limited number of rolling slots reserved for bespoke builds.
 
-- Custom implementations
-- Enterprise features
-- Priority support
-- Training and consulting
-
-Contact <hello@tractstack.com> for commercial support options.
+- **The Deal:** We don't just "design" your site. We map your business logic directly into the Tract Stack server-side engine.
+- **The Cost:** Engagements start from **$20,000**.
 
 ## License Text
 
@@ -83,12 +91,6 @@ The complete O'Saasy license is available from [LICENSE.md](https://osaasy.dev/a
 >
 > THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## Questions?
-
-- **General licensing questions**: <hello@tractstack.com>
-- **Partnership inquiries**: <hello@tractstack.com>
-- **Technical support**: [GitHub Issues](https://github.com/AtRiskMedia/tractstack-go/issues)
-
 ---
 
-_Tract Stack is made by [At Risk Media](https://atriskmedia.com) with ❤️ for the web community._
+_The "Free Web" Press by At Risk Media_
