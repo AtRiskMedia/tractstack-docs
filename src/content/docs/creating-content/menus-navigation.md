@@ -1,230 +1,75 @@
 ---
 title: Menus & Navigation
-description: Creating and managing site navigation menus
+description: Directing the flow of the narrative
 ---
 
-TractStack provides flexible menu creation and navigation management through the Content section of StoryKeep. Menus help organize your site structure and guide visitors through your content.
+A static website gives you a map of the entire world (Home, About, Services, Contact, Blog, FAQ...). It overwhelms the user before they’ve taken a single step.
 
-## Understanding TractStack Menus
+In **Tract Stack**, we treat Menus as a Compass. They are simple, directional, and designed to keep the user inside the narrative, not looking for the exit.
 
-### Menu System Overview
+## The Philosophy: The Compass, Not the Map
 
-Menus in TractStack are custom content types that can be created and managed independently of page structure. They consist of menu links with configurable properties and can be assigned to different locations in your site.
+The "Old Web" relies on Mega-Menus - cluttered dropdowns that scream desperation.
+The **Free Web** relies on **Signal Continuity**.
 
-### Menu Components
+Your Main Menu should not list everything you have. It should list the **Primary Threads** of your Brand Universe.
 
-**Menu Links**: Individual navigation items with:
+- **The Main Menu:** The "Action" paths (e.g., "Build," "Learn," "Pricing").
+- **The Footer:** The "Context" paths (e.g., "Privacy," "Terms," "Manifesto").
 
-- **Name**: Display text for the link
-- **Description**: Additional context or explanation
-- **Featured**: Highlighting for important menu items
-- **ActionLisp**: Navigation behavior definition
+## Configuring Menus (The "Has Menu" Toggle)
 
-**Menu Structure**:
+We removed the complex "Menu Builders" of legacy CMS tools. You don't need a separate drag-and-drop interface to build a list.
 
-- **ID**: Unique identifier for the menu
-- **Title**: Menu name for management purposes
-- **Theme**: Visual styling for the menu
-- **Options Payload**: Array of menu links
+In Tract Stack, navigation is a property of the Story Fragment itself.
 
-## Creating Menus
+### How to Add a Page to the Menu
 
-### Basic Menu Creation
+1. **Open** the Story Fragment in the Editor.
+2. **Locate** the "Has Menu" checkbox in the properties panel.
+3. **Check it.**
 
-1. **Access menu creation**: Navigate to Content → Manage Content → "Create New" → "Menu"
+**The Logic:**
 
-2. **Menu configuration**:
-   - **Title**: Descriptive name for menu management
-   - **Theme**: Visual styling theme for the menu
-   - **Menu Links**: Add individual navigation items
+- If `Has Menu` is checked, the page appears in the **Main Navigation**.
+- The text used in the menu is the Page Title (or a shorter "Menu Title" if configured).
+- The order is determined by the `Order` property or alphabetical default.
 
-3. **Link configuration**: For each menu item:
-   - **Name**: Text that appears in navigation
-   - **Description**: Hover text or additional context
-   - **Featured**: Mark important items for special styling
-   - **ActionLisp**: Define where the link navigates
+## Adaptive Navigation
 
-### ActionLisp Navigation
+Because Tract Stack is a **Adaptive Engine**, your navigation is not set in stone.
 
-ActionLisp format defines navigation behavior:
+**Scenario:**
+You have a "Wholesale DXP" offering that only applies to Agencies.
 
-**Story fragment navigation**:
+- **Default View:** The "Agencies" link is hidden to keep the menu clean for regular users.
+- **The Handshake:** A user identifies as an "Agency Owner" via a Belief Widget.
+- **The Reveal:** The Logic Engine refreshes the state, and the "Agency Portal" link appears in the Main Menu instantly.
 
-```
-(goto (storyfragment "slug"))
-```
+This is **Smart Triage** applied to navigation. You only show the door when the user is ready to walk through it.
 
-**Context page navigation**:
+## Best Practices
 
-```
-(goto (context "slug"))
-```
+### 1. Keep the Main Stage Clean
 
-**External URL**:
+Your top navigation bar is prime real estate. Do not clutter it with "Context Pages."
 
-```
-(goto (url "https://example.com"))
-```
+- **Good:** Story Fragments (Narrative threads).
+- **Bad:** Terms of Service (Put this in the Footer).
 
-## Menu Placement and Integration
+### 2. The "Magic Path" Button
 
-### Header Navigation
+Often, the most important link isn't a text link - it's an Action.
+In your site configuration, you can define a **Primary Action** (e.g., "Start the Handshake" or "Get Started"). This stands apart from the menu as the clear next step.
 
-Menus can be integrated into the site header for primary navigation:
+### 3. Footer Strategy
 
-- **Main navigation**: Primary site menu
-- **Utility navigation**: Secondary links (login, contact, etc.)
-- **Mobile navigation**: Responsive menu for mobile devices
+The footer is where you put the "Library." Use it for:
 
-### Footer Navigation
-
-Footer menus provide:
-
-- **Site map**: Complete navigation overview
-- **Legal links**: Privacy, terms, contact information
-- **Social links**: Social media and external connections
-
-### Contextual Menus
-
-**In-content navigation**:
-
-- **Section menus**: Navigation within content areas
-- **Related links**: Contextual navigation suggestions
-- **Call-to-action menus**: Action-oriented navigation
-
-## Menu Themes and Styling
-
-### Theme Configuration
-
-Menu themes control visual presentation:
-
-- **Color schemes**: Match site branding
-- **Typography**: Font and text styling
-- **Layout**: Horizontal, vertical, or custom arrangements
-- **Interactive states**: Hover, active, and focus styling
-
-### Responsive Behavior
-
-Menus automatically adapt for different screen sizes:
-
-- **Desktop**: Full menu display
-- **Tablet**: Condensed navigation
-- **Mobile**: Hamburger menu or drawer navigation
-
-## Advanced Menu Features
-
-### Featured Items
-
-Mark menu items as featured for:
-
-- **Visual emphasis**: Special styling or highlighting
-- **Priority placement**: Prominent positioning in navigation
-- **Call-to-action treatment**: Button-style presentation
-
-### Dynamic Menu Content
-
-Menus can integrate with:
-
-- **Content management**: Automatically include new pages
-- **User context**: Show different items based on authentication
-- **Belief system**: Adaptive navigation based on visitor preferences
-
-## Menu Analytics
-
-### Navigation Tracking
-
-TractStack automatically tracks menu usage:
-
-- **Click events**: Which menu items are used most
-- **Navigation patterns**: How visitors move through your site
-- **Drop-off points**: Where visitors leave navigation flows
-
-### Performance Insights
-
-**Menu effectiveness metrics**:
-
-- **Usage frequency**: Most and least used menu items
-- **Conversion impact**: How navigation affects site goals
-- **User journey analysis**: Navigation's role in visitor paths
-
-## Multi-Level Navigation
-
-### Hierarchical Menus
-
-While TractStack menus are primarily flat structures, you can create hierarchical navigation through:
-
-- **Menu grouping**: Organize related items together
-- **Nested ActionLisp**: Complex navigation behaviors
-- **Contextual menus**: Different menus for different sections
-
-### Breadcrumb Navigation
-
-Implement breadcrumb trails using:
-
-- **Page hierarchy**: Logical content organization
-- **Menu integration**: Breadcrumbs based on menu structure
-- **User journey**: Show navigation path taken
-
-## Menu Management
-
-### Content Organization
-
-**Menu planning**:
-
-- **Information architecture**: Logical site organization
-- **User needs**: Navigation that matches visitor goals
-- **Content strategy**: Menus that support content discovery
-
-**Menu maintenance**:
-
-- **Regular review**: Update menus when content changes
-- **Link validation**: Ensure all menu links work correctly
-- **Performance monitoring**: Track menu effectiveness
-
-### Team Workflow
-
-**Role-based menu management**:
-
-- **Editors**: Can create and modify menus
-- **Admins**: Full menu management capabilities
-- **Content strategy**: Collaborative menu planning
-
-## Integration with Content
-
-### Story Fragment Integration
-
-Menus work seamlessly with story fragments:
-
-- **Page navigation**: Link to any story fragment
-- **Context integration**: Include context pages in menus
-- **Dynamic updates**: Menus reflect current content structure
-
-### Belief-Driven Navigation
-
-**Adaptive menus**:
-
-- **Personalized navigation**: Show relevant items based on visitor beliefs
-- **Progressive disclosure**: Reveal navigation options as visitors engage
-- **Custom journeys**: Navigation paths based on declared preferences
-
-## Technical Implementation
-
-### Menu Storage
-
-Menus are stored as content nodes with:
-
-- **Database integration**: Persistent menu configuration
-- **Cache optimization**: Fast menu loading
-- **Update synchronization**: Immediate menu changes
-
-### Template Integration
-
-Menus integrate with Astro templates:
-
-- **Component rendering**: Menu components in page layouts
-- **Theme application**: Consistent styling across site
-- **Responsive rendering**: Device-appropriate menu display
+- Context Pages (Privacy, Legal).
+- Deep links to specific "Hidden Doors" for power users.
+- Social signals.
 
 ---
 
-_Effective menu design creates intuitive navigation that helps visitors find content and achieve their goals. Regular analysis of menu performance helps optimize the user experience._
+_The "Free Web" Press by At Risk Media_

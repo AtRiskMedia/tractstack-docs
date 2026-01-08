@@ -1,250 +1,69 @@
 ---
 title: Analytics & Tracking
-description: Built-in engagement analytics and third-party integrations
+description: Measuring Signal, Not Noise.
 ---
 
-TractStack includes comprehensive analytics that automatically track visitor engagement and content performance. The system provides privacy-first analytics while supporting integration with external platforms like Google Analytics.
+The "Old Web" relies on Surveillance. It installs cookies, pixels, and trackers to follow the user around the internet, guessing at their intent.
+**TractStack** relies on **Listening**.
 
-## Built-in Analytics System
+We built a privacy-first analytics engine directly into the core. We don't just tell you that a user visited a page. We tell you if they **Read** it, **Glossed** over it, or **Unlocked** it.
 
-### Automatic Event Tracking
+## The Philosophy: The Pulse vs. The Autopsy
 
-TractStack automatically tracks engagement events without requiring additional configuration:
+Traditional analytics are binary: Did they visit? (Yes/No).
+Real human behavior is nuanced.
 
-**Core tracking events:**
+- **Google Analytics:** Says "1 Page View."
+- **TractStack:** Says "They scrolled to the Pricing Pane, **Read** it for 30 seconds, **Glossed** over the FAQ, and **Clicked** the 'Enterprise' hidden door."
 
-- `PAGEVIEWED`: Visitor loads a page
-- `ENTERED`: Visitor scrolls to a content section
-- `READ`: Visitor spends time reading content (dwell time tracking)
-- `GLOSSED`: Visitor briefly scans content
-- `CLICKED`: Visitor interacts with buttons, links, or widgets
-- `WATCHED`: Visitor engages with video or media content
-- `Impression`: Visitor interacts with call-to-action notifications
+This is **Signal Analytics**. It gives you the "Body Language" of your traffic.
 
-### Analytics Data Structure
+## Automatic Event Tracking (The Sensors)
 
-**Event properties:**
+You don't need to configure tags. The Adaptive Engine automatically tracks the physics of the visit:
 
-- **Event type**: Category of interaction
-- **Timestamp**: When the event occurred
-- **Session ID**: Visitor session identifier
-- **Story fragment ID**: Page where event occurred
-- **Pane ID**: Specific content section (where applicable)
-- **Belief context**: Associated visitor beliefs
+- `PAGEVIEWED`: The user entered the room.
+- `ENTERED`: The user scrolled to a specific Pane.
+- `READ`: High Dwell Time. They stopped to listen.
+- `GLOSSED`: Low Dwell Time. They scanned and kept moving. (This tells you your copy is weak).
+- `CLICKED`: They interacted with a link or button.
+- `WATCHED`: They played media.
+- `IMPRESSION`: They saw a contextual call-to-action (The "Tap on the Shoulder").
 
-### Real-Time Tracking
+## The Dashboard: StoryKeep
 
-**Live analytics features:**
+We strip away the vanity metrics. The StoryKeep Dashboard focuses on **Intent**.
 
-- **Active visitor count**: Current site visitors
-- **Real-time events**: Live interaction tracking
-- **Geographic data**: Visitor location insights
-- **Device information**: Platform and browser analytics
+- **Anonymous Visitors:** The crowd.
+- **Known Leads:** Users who have identified themselves (e.g., via a Belief Widget or Form).
+- **Belief Profiles:** Breakdown of your audience by role (e.g., "30% Developers, 20% CMOs").
+- **Pane Performance:** Which specific sections of your story are holding attention, and which are causing drop-offs.
 
-## Privacy-First Approach
+## Privacy by Design (Zero-Party Data)
 
-### Zero-Party Data Focus
+We do not use Third-Party Cookies. We do not fingerprint users across the web.
+We rely on **Zero-Party Data** - information the user voluntarily gives us via Belief Widgets.
 
-**Data collection principles:**
+- **Compliance:** GDPR, CCPA, and PECR friendly out of the box.
+- **The Benefit:** You don't need an ugly "Cookie Consent" banner blocking your beautiful homepage because you aren't spying on anyone.
 
-- **Voluntary sharing**: Visitors choose what information to provide
-- **Session-based tracking**: Temporary visitor identification
-- **No behavioral inference**: Direct preference declaration instead of guessing
-- **Transparent usage**: Clear indication of how data is used
+## Google Analytics Integration (The Security Blanket)
 
-### GDPR and Privacy Compliance
+We know that clients are addicted to Google Analytics. It is their security blanket.
+If you (or your client) insist on using it, TractStack plays nice.
 
-**Privacy protection features:**
+- **Event Forwarding:** We automatically forward our high-fidelity events (`READ`, `ENTERED`, `BELIEF_DECLARED`) to GA4.
+- **The Result:** You can keep your corporate reporting dashboards, but populate them with actual signal data instead of just "Hits."
 
-- **No personal data collection** without explicit consent
-- **Session anonymization**: Visitor tracking without identity storage
-- **Data minimization**: Only collect necessary information
-- **Right to deletion**: Visitor data removal capabilities
+## Exporting Leads
 
-## StoryKeep Analytics Dashboard
+Because we track **Beliefs**, your export is not just a list of emails. It is a dossier.
 
-### Engagement Metrics
+- **Standard CSV:** Email, Name, Date.
+- **Enriched Data:** "User is a **Developer**, interested in **Wholesale**, and read the **API Docs**."
 
-**Primary dashboard metrics:**
-
-- **Total Events**: All tracked interactions across the site
-- **Anonymous Visitors**: First-time or unidentified visitors
-- **Known Leads**: Returning visitors with saved preferences
-- **Total Leads**: Email addresses collected through forms
-
-### Time Period Analysis
-
-**Available reporting periods:**
-
-- **Past 24 hours**: Real-time daily patterns
-- **Past 7 days**: Weekly trends and engagement patterns
-- **Past 28 days**: Monthly overview and growth tracking
-
-### Content Performance
-
-**Page-level analytics:**
-
-- **Story fragment performance**: Individual page metrics
-- **Pane engagement**: Content section interaction rates
-- **Belief widget effectiveness**: Preference declaration tracking
-- **Conversion funnel analysis**: Visitor journey through content
-
-## Lead Generation Analytics
-
-### Visitor Classification
-
-**Visitor categories:**
-
-- **Anonymous visitors**: No identifying information provided
-- **Known leads**: Email provided or preferences saved with consent
-- **Returning visitors**: Multiple session tracking
-- **Engaged users**: High interaction levels
-
-### Lead Data Export
-
-**CSV export capabilities:**
-
-- **Contact information**: Email addresses and engagement history
-- **Interaction patterns**: Content consumption and preference data
-- **Belief profiles**: Declared preferences and persona information
-- **Conversion tracking**: Goal completion and journey analysis
-
-## Google Analytics Integration
-
-### Setup Configuration
-
-**Integration process:**
-
-1. **Obtain Google Analytics measurement ID** (G-XXXXXXXXXX format)
-2. **Add to StoryKeep Advanced Settings** (Admin only)
-3. **Configure event forwarding** for TractStack events
-4. **Set up custom dimensions** for belief-based segmentation
-
-### Event Forwarding
-
-**Automatic event sending:**
-
-- TractStack events automatically forward to Google Analytics
-- **Custom event names**: TractStack events mapped to GA4 events
-- **Enhanced data**: Belief context and content section information
-- **Goal tracking**: Conversion events sent to Google Analytics
-
-### Custom Dimensions
-
-**Belief-based segmentation:**
-
-- **Visitor personas**: Segment by declared identity (Developer, Manager, etc.)
-- **Preference categories**: Group by belief declarations
-- **Engagement depth**: Track interaction levels
-- **Content personalization**: Measure adaptive content effectiveness
-
-## Belief System Analytics
-
-### Preference Declaration Tracking
-
-**Belief analytics:**
-
-- **Widget interaction rates**: How often visitors engage with belief widgets
-- **Preference distribution**: Most common belief declarations
-- **Belief combinations**: Popular visitor profile patterns
-- **Conversion correlation**: How beliefs affect goal completion
-
-### Personalization Effectiveness
-
-**Adaptive content performance:**
-
-- **Content revelation impact**: Engagement before/after personalization
-- **Belief-specific content**: Performance by visitor segment
-- **Progressive disclosure**: Effectiveness of content unfolding
-- **Journey optimization**: Belief-driven path analysis
-
-## Technical Implementation
-
-### Event Collection
-
-**Client-side tracking:**
-
-- **JavaScript event listeners**: Automatic interaction detection
-- **Scroll tracking**: Content section visibility monitoring
-- **Time-based events**: Dwell time and reading duration
-- **Belief integration**: Preference declaration tracking
-
-### Data Storage
-
-**Analytics data storage:**
-
-- **Session-based**: Temporary tracking during visits
-- **Aggregated reporting**: Statistical analysis without personal data
-- **Lead database**: Consented contact information storage
-- **Export capabilities**: CSV downloads for external analysis
-
-### Performance Optimization
-
-**Efficient tracking:**
-
-- **Minimal overhead**: Lightweight analytics implementation
-- **Batched requests**: Efficient data transmission
-- **Local processing**: Client-side event aggregation
-- **Cached reports**: Fast dashboard loading
-
-## Advanced Analytics Features
-
-### Cohort Analysis
-
-**Visitor cohorts:**
-
-- **Acquisition date**: Performance by first visit time
-- **Belief profiles**: Behavior by declared preferences
-- **Engagement levels**: High vs low interaction visitors
-- **Retention patterns**: Return visit frequency and duration
-
-### Content Optimization
-
-**Performance insights:**
-
-- **High-performing content**: Most engaging sections
-- **Conversion drivers**: Content leading to desired actions
-- **Optimization opportunities**: Low engagement areas needing improvement
-- **A/B testing data**: Content variation effectiveness
-
-### Custom Reporting
-
-**Flexible analytics:**
-
-- **Date range selection**: Custom time periods for analysis
-- **Event filtering**: Specific interaction types
-- **Segmentation**: Visitor groups and behavior patterns
-- **Export options**: Data download for external analysis
-
-## Analytics Best Practices
-
-### Data Interpretation
-
-**Key performance indicators:**
-
-- **Engagement depth**: Average events per session
-- **Content effectiveness**: Read completion rates
-- **Conversion rates**: Goal achievement percentages
-- **Belief adoption**: Preference declaration frequency
-
-### Privacy Considerations
-
-**Ethical analytics:**
-
-- **Consent management**: Clear opt-in/opt-out options
-- **Data transparency**: Explain what data is collected and why
-- **Minimal collection**: Only gather necessary information
-- **Regular audits**: Review data collection practices
-
-### Performance Monitoring
-
-**System optimization:**
-
-- **Load impact**: Analytics effect on site performance
-- **Data accuracy**: Validate tracking implementation
-- **Report reliability**: Ensure consistent data collection
-- **Privacy compliance**: Regular privacy policy review
+This allows you to hand your Sales Team a "Warm Lead" that actually means something.
 
 ---
 
-_TractStack's analytics provide comprehensive insights into visitor behavior while maintaining privacy and enabling data-driven optimization of content and user experience._
+_The "Free Web" Press by At Risk Media_

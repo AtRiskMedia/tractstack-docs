@@ -152,10 +152,6 @@ export default defineConfig({
               label: "Menus & Navigation",
               link: "/creating-content/menus-navigation/",
             },
-            {
-              label: "Media Management",
-              link: "/creating-content/media-management/",
-            },
           ],
         },
         {
@@ -169,10 +165,6 @@ export default defineConfig({
             {
               label: "Visibility Rules",
               link: "/magic-paths/visibility-rules/",
-            },
-            {
-              label: "Progressive Disclosure",
-              link: "/magic-paths/progressive-disclosure/",
             },
           ],
         },
@@ -190,10 +182,6 @@ export default defineConfig({
             {
               label: "Analytics & Tracking",
               link: "/advanced-features/analytics-tracking/",
-            },
-            {
-              label: "Multi-Tenant Management",
-              link: "/advanced-features/multi-tenant-management/",
             },
           ],
         },

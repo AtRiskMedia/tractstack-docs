@@ -1,257 +1,101 @@
 ---
-title: Belief System Overview
-description: Understanding TractStack's adaptive content foundation
+title: The Belief System
+description: Privacy-first personalization via voluntary disclosure
 ---
 
-The belief system is the core technology that enables TractStack's adaptive content capabilities. It allows visitors to declare their preferences and interests, which then drives personalized content revelation without tracking or surveillance.
+The "Old Web" relies on Surveillance (Cookies, Pixels, Tracking). It guesses who the user is by spying on them.
+**Tract Stack** relies on **Conversation**.
 
-## Core Concept
+The Belief System is the core technology that powers our **Adaptive Engine**. It allows visitors to voluntarily declare who they are and what they want. In exchange, the site adapts instantly to match their needs.
 
-### Zero-Party Data Disclosure
+## The Philosophy: Ask, Don't Steal
 
-TractStack facilitates **zero-party disclosure** - where visitors voluntarily share information about themselves through natural interactions with your content. This privacy-first approach enables authentic personalization without surveillance or tracking.
+We facilitate **Zero-Party Disclosure**.
+Instead of stealing data from the user's browser history, we simply ask them a question.
 
-**How it works:**
+1. **The Ask:** The user sees a **Belief Widget** (e.g., "Are you a Developer or a Marketer?").
+2. **The Handshake:** The user answers.
+3. **The Memory:** The system stores this "Belief" in a private, temporary session.
+4. **The Reveal:** The content adapts immediately—without a page reload—revealing the "Hidden Doors" relevant to that user.
 
-1. **Visitor encounters belief widget** on a page
-2. **Declares preference** through interaction (dropdown, button, toggle)
-3. **System stores belief** for their session (e.g., `IsInterested=BELIEVES_YES`)
-4. **Content adapts immediately** based on declared beliefs
-5. **Personalized experience** unfolds without page refresh
+**The Result:** Authentic personalization without the creepiness of surveillance.
 
-### Privacy-First Foundation
+## How Beliefs Work
 
-**Key principles:**
+A "Belief" is simply a piece of data attached to the user's current session. It is temporary by default.
 
-- **Voluntary declaration**: Visitors choose what to share
-- **Session-based storage**: Temporary by default
-- **No behavioral tracking**: Direct preference declaration instead of inference
-- **User control**: Visitors can modify or clear their beliefs
-- **Transparent usage**: Clear indication of how beliefs affect content
+### 1. Identity Beliefs (Who are you?)
 
-## Belief Storage and Management
+Used to sort the audience into roles.
 
-### Session-Based Beliefs
+- **The Widget:** "Identify As"
+- **The Data:** `UseCase=Developer`, `UseCase=Agency_Owner`, `Budget=Enterprise`.
+- **The Adaptation:** A Developer sees API docs. An Agency Owner sees ROI charts.
 
-**Default behavior:**
+### 2. Scalar Beliefs (How do you feel?)
 
-- Beliefs stored in visitor's session
-- Persist across pages during visit
-- Clear when session ends or browser closes
-- No permanent tracking without consent
+Used to measure the temperature of the room.
 
-### Cross-Browser Synchronization
+- **Yes/No (`yn`):** Simple binary choices. ("Do you want to see technical specs?")
+- **Interest (`interest`):** Engagement measurement. ("Are you interested in Wholesale Pricing?")
+- **Likert Scale (`likert`):** Nuanced opinion. ("Strongly Agree" to "Strongly Disagree").
 
-**Fingerprint-based sync:**
+## Visibility Rules (The Velvet Rope)
 
-- Optional preference sharing across browser tabs/devices
-- Uses device fingerprinting for anonymous synchronization
-- Maintains privacy while enabling consistent experience
-- User can opt-out of sync functionality
+You don't write code to personalize the page. You just set the rules on your **Panes**.
 
-### Belief Structure
+### Held Beliefs (The Ticket In)
 
-**Technical format:**
+"Show this content ONLY IF the user believes X."
 
-```javascript
-// Session belief storage
-sessionBeliefs[sessionID][storyfragmentID]["BeliefSlug"] = ["BELIEF_VALUE"];
+- **Rule:** `UseCase=Developer`
+- **Result:** The "API Reference" pane becomes visible.
+- **Wildcards:** `UseCase=*` (Show if they have told us _any_ role).
 
-// Example
-sessionBeliefs["abc123"]["homepage"]["Interest"] = ["BELIEVES_YES"];
-sessionBeliefs["abc123"]["homepage"]["UseCase"] = ["Developer"];
-```
+### Withheld Beliefs (The Bouncer)
 
-## Belief Categories and Types
+"Hide this content IF the user believes Y."
 
-### Scalar Beliefs
+- **Rule:** `Experience=Beginner`
+- **Result:** The "Advanced Configuration" pane is hidden to prevent confusion.
 
-**Predefined scales for common preference types:**
+### The Match-Across Logic
 
-**Yes/No (`yn`)**:
+Real life is complex. Sometimes you need to check multiple IDs.
 
-- `BELIEVES_YES` / `BELIEVES_NO`
-- Simple binary choices
-- Example: "Are you interested in technical documentation?"
+- **AND Logic:** `Role=Dev AND Experience=Senior` (Must match both).
+- **OR Logic:** `Role=Dev OR Role=CTO` (Matches either).
 
-**True/False (`tf`)**:
+## The Widgets (The Interface)
 
-- `BELIEVES_TRUE` / `BELIEVES_FALSE`
-- Factual or opinion-based statements
-- Example: "I prefer detailed explanations over summaries"
+How does the user tell you what they believe? Through **Belief Widgets**.
+These are not boring form fields. They are interactive elements placed inside the narrative flow.
 
-**Interest Scale (`interest`)**:
+- **The Toggle:** A quick switch. (e.g., "Show Technical Details").
+- **The Dropdown:** A scale of preference. (e.g., "How large is your team?").
+- **The Identifier:** A button group. (e.g., "I am a: Student | Professional | Hobbyist").
 
-- `BELIEVES_INTERESTED` / `BELIEVES_NOT_INTERESTED`
-- Preference and engagement measurement
-- Example: "Are you interested in advanced features?"
+## The Physics (HTMX & Real-Time)
 
-**Agreement Scale (`agreement`)**:
+This is where the magic happens.
+In a traditional CMS, if you fill out a form, the page reloads. The spell is broken.
 
-- `BELIEVES_AGREES` / `BELIEVES_DISAGREES`
-- Opinion and position measurement
-- Example: "Do you agree that privacy is more important than convenience?"
+Tract Stack uses **HTMX** to handle the negotiation in the background.
 
-**Likert Scale (`likert`)**:
+1. User clicks "I am a Developer."
+2. The browser whispers to the server (POST).
+3. The server updates the session.
+4. The server instantly repaints _only_ the parts of the page that need to change.
 
-- 5-point scale from `STRONGLY_AGREES` to `STRONGLY_DISAGREES`
-- Nuanced opinion measurement
-- Example: "Rate your agreement with this statement"
+It is seamless. It is fast. It feels like a living application, not a static document.
 
-### Identity-Based Beliefs
+## Privacy & Persistence
 
-**Persona identification:**
+- **Session-Based:** By default, beliefs live only as long as the visit. When they close the tab, the slate is wiped clean.
+- **Voluntary Sync:** We offer an optional, fingerprint-based sync that allows beliefs to travel across tabs or devices, but _only_ if you configure it.
 
-- Custom values like `Developer`, `Manager`, `Student`
-- Role-based content personalization
-- Example: `UseCase=Developer` shows technical content
-
-**Demographic beliefs:**
-
-- Experience level: `Beginner`, `Intermediate`, `Advanced`
-- Company size: `Startup`, `SMB`, `Enterprise`
-- Budget range: `Limited`, `Moderate`, `Flexible`
-
-## Content Visibility Rules
-
-### Held Beliefs (Show Conditions)
-
-Content appears when visitors possess specific beliefs:
-
-**Simple matching:**
-
-- `Interest=BELIEVES_YES` → Show detailed information
-- `UseCase=Developer` → Show technical documentation
-
-**Multiple value matching:**
-
-- `UseCase=Developer,Manager` → Show content for either role
-- `Experience=Intermediate,Advanced` → Hide beginner content
-
-**Wildcard matching:**
-
-- `UseCase=*` → Show if any UseCase value is set
-- Useful for "personalized" vs "default" content
-
-### Withheld Beliefs (Hide Conditions)
-
-Content hides when visitors possess specific beliefs:
-
-**Exclusion rules:**
-
-- `Experience=Beginner` → Hide advanced technical content
-- `Budget=Limited` → Hide premium pricing information
-
-**Multi-condition hiding:**
-
-- `UseCase=Student AND Budget=Limited` → Hide enterprise features
-
-### Advanced Logic
-
-**Match-Across (OR Logic):**
-
-- Regular beliefs use AND logic (all must match)
-- Match-across beliefs use OR logic (any can match)
-- Example: Show content if `(Interest=Yes AND Experience=Advanced) OR (Role=Admin OR Role=Developer)`
-
-**Linked Beliefs (Cascade Effects):**
-
-- Setting one belief automatically triggers related beliefs
-- Example: Selecting `UseCase=Developer` might set `TechnicalLevel=Advanced`
-- Ensures content consistency across the site
-
-## Belief Widgets
-
-### Widget Types
-
-**Belief Widget (Dropdown):**
-
-- Dropdown selection with predefined scales
-- Question prompt with clear options
-- Slug configuration for belief storage
-
-**Toggle Belief Widget:**
-
-- Simple binary toggle interface
-- Quick preference capture
-- Automatic Yes/No or True/False values
-
-**Identify As Widget:**
-
-- Button group for persona selection
-- Exclusive choice among custom options
-- Visual feedback for selected option
-
-### Widget Configuration
-
-**Required parameters:**
-
-- **Belief Slug**: Letters only, no spaces (e.g., `InterestLevel`)
-- **Question Prompt**: Clear, conversational text
-- **Scale/Options**: Predefined scale or custom values
-
-**Example configuration:**
-
-```
-Belief Slug: TechnicalLevel
-Prompt: "What's your technical background?"
-Scale: Custom values (Beginner, Intermediate, Advanced)
-```
-
-## Implementation in Content
-
-### Pane Visibility Configuration
-
-**Setting visibility rules:**
-
-1. **Edit pane** in story fragment
-2. **Configure belief requirements** in pane settings
-3. **Set held/withheld conditions**
-4. **Test visibility** with different belief combinations
-
-**Example visibility configuration:**
-
-- **Held Beliefs**: `TechnicalLevel=Advanced`
-- **Withheld Beliefs**: `Interest=BELIEVES_NO`
-- **Result**: Shows only to advanced users who are interested
-
-### Progressive Disclosure Strategy
-
-**Content layering:**
-
-1. **Default content**: Visible to all visitors
-2. **First-level personalization**: Basic belief-driven content
-3. **Deep personalization**: Multiple belief combinations
-4. **Expert content**: Advanced belief-specific information
-
-## Real-Time Content Updates
-
-### HTMX Integration
-
-**Seamless updates:**
-
-- Belief declaration triggers HTMX POST to `/api/v1/state`
-- Backend updates session belief storage
-- Content visibility recalculated immediately
-- Page sections reveal/hide without refresh
-
-**Technical flow:**
-
-1. **Widget interaction** → HTMX POST with belief data
-2. **Backend processing** → Session belief update
-3. **Visibility evaluation** → Check all pane requirements
-4. **Broadcast update** → SSE notification to browser
-5. **Content revelation** → Hidden content becomes visible
-
-### Cross-Page Persistence
-
-**Session continuity:**
-
-- Beliefs persist across page navigation
-- Content adapts consistently throughout site
-- Visitor journey becomes increasingly personalized
-- Analytics track belief-driven engagement patterns
+We do not sell this data. We do not aggregate it. It belongs to the session, and the session belongs to the user.
 
 ---
 
-_The belief system transforms static websites into adaptive experiences that learn about visitors through voluntary disclosure rather than surveillance, creating genuinely personalized content while respecting privacy._
+_The "Free Web" Press by At Risk Media_

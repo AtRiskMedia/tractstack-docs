@@ -1,204 +1,83 @@
 ---
-title: Impressions System
-description: Contextual call-to-action notifications based on content engagement
+title: The Impressions System
+description: Contextual CTAs. The tap on the shoulder.
 ---
 
-Impressions are dynamic call-to-action notifications that appear when visitors view specific content on your pages. They provide an additional channel to capture attention and guide visitor engagement based on the content they're actually reading.
+A Pop-Up is a salesman who kicks down your front door.
+An **Impression** is a waiter who catches your eye just as you finish your drink.
 
-## How Impressions Work
+In **Tract Stack**, we don't assault the user. We wait for them.
 
-### Triggering Logic
+## The Philosophy: Reading the Room
 
-Impressions are attached to specific **panes** (content sections) on your pages. When a visitor views a pane that has an associated impression, the impression becomes "visible" and can be displayed to the user.
+Most websites are blind. They show the same "Sign Up for Our Newsletter" modal whether the user is reading about your pricing or your history.
 
-**Activation process:**
+**Impressions are bound to Panes.**
+They are dormant until the user scrolls to a specific part of the story.
 
-1. **Visitor scrolls** to or views a specific content pane
-2. **System detects** pane viewing event
-3. **Associated impression** becomes active
-4. **Notification appears** in header or overlay
-5. **Analytics track** impression visibility and interactions
+1. **The Scroll:** The user reads a Pane about "High-Performance APIs."
+2. **The Trigger:** The system sees them reading.
+3. **The Signal:** A small, red notification badge animates in the header.
 
-### Multiple Impressions
+It doesn't block their view. It just lets them know: _"I have something relevant to say about what you're reading right now."_
 
-Multiple impressions can be active simultaneously if a visitor has seen multiple triggering panes on the same page or across different pages during their session.
+## The Mechanics: Polite Persistence
 
-## Display Modes
+### 1. The Header Icon (The "Unread Message")
 
-### Header Icon Mode
+When an Impression triggers, we don't cover the content. We light up the **Header Icon**.
 
-When impressions are active, a small animated notification icon appears in the header menu:
+- **The Bounce:** A subtle animation to draw the eye.
+- **The Badge:** A number count (e.g., "2") showing how many relevant offers they’ve unlocked.
+- **The Psychology:** It feels like a notification, not an ad. People hate ads. They _love_ checking notifications.
 
-**Visual indicators:**
+### 2. The Overlay (The Conversation)
 
-- **Bouncing animation** to draw attention
-- **Number badge** showing count of active impressions
-- **Red background** for visibility
-- **Click to expand** functionality
+When the user clicks the icon, the **Overlay** slides in.
 
-### Expanded Overlay Mode
+- **The Pitch:** Title, Body, and Button.
+- **The Cycle:** If they triggered multiple Impressions (e.g., they read about "API" and "Pricing"), the overlay auto-cycles through them like a deck of cards.
+- **The Dismissal:** A clear "X". If they aren't interested, we let them go. We don't nag.
 
-When the header icon is clicked, impressions display as an overlay in the bottom-right corner:
+## The Anatomy of the Ask
 
-**Overlay features:**
+Every Impression is a structured offer.
 
-- **Full impression content** with title, body text, and call-to-action button
-- **Close button** (X) in the top-right corner for dismissal
-- **Navigation dots** when multiple impressions are active
-- **Auto-cycling** every 5 seconds through multiple impressions
-- **Manual navigation** using indicator dots
+- **Title:** The Hook.
+- **Body:** The Value Proposition.
+- **Action:** The Destination.
 
-## Content Structure
+### ActionLisp (The Navigation Brain)
 
-Each impression contains structured content elements:
+We don't just use dumb URL links. We use **ActionLisp** to ensure the navigation is fluid and precise.
 
-### Core Components
+- **Go to a scene:** `(goto (storyfragment "pricing"))`
+- **Open a reference:** `(goto (context "security-policy"))`
+- **Leave the site:** `(goto (url "https://cal.com/book-meeting"))`
 
-**Title**: Headline for the impression that captures attention
-**Body text**: Descriptive content explaining the offer, message, or call-to-action
-**Button text**: Call-to-action link text that encourages interaction
-**Action**: Navigation destination defined in ActionLisp format
+## Analytics: Measuring the Spark
 
-### ActionLisp Integration
+A click on a navigation link tells you they want to move.
+A click on an **Impression** tells you they were _persuaded_.
 
-Impression actions use ActionLisp format for navigation:
+When a user clicks an Impression, we track it as a high-value event (`Impression: CLICKED`). We record exactly which Pane triggered it.
 
-**Story fragment navigation:**
-
-```
-(goto (storyfragment "slug"))
-```
-
-**Context page navigation:**
-
-```
-(goto (context "slug"))
-```
-
-**External URL:**
-
-```
-(goto (url "https://example.com"))
-```
-
-The system parses and validates action syntax before execution, ensuring reliable navigation behavior.
-
-## Creating and Managing Impressions
-
-### Impression Creation
-
-Impressions are created and managed through the StoryKeep content management system:
-
-1. **Associate with panes**: Link impressions to specific content sections
-2. **Define trigger logic**: Set which panes must be viewed to activate
-3. **Create compelling content**: Write effective titles, descriptions, and call-to-action text
-4. **Set navigation actions**: Define where the impression button should lead
-
-### Content Strategy
-
-**Effective impression content:**
-
-- **Relevant messaging**: Relate to the content being viewed
-- **Clear value proposition**: Explain what visitors get by clicking
-- **Action-oriented language**: Use compelling call-to-action text
-- **Contextual timing**: Appear at appropriate moments in content consumption
-
-## User Experience Design
-
-### Non-Intrusive Approach
-
-**Respectful engagement:**
-
-- **Icon mode**: Allows visitors to choose when to engage
-- **Easy dismissal**: Clear close option in expanded mode
-- **No forced interactions**: Visitors can ignore impressions completely
-- **Progressive disclosure**: Information available when wanted
-
-### Mobile-Friendly Design
-
-**Responsive implementation:**
-
-- **Touch-optimized**: Interface works well on mobile devices
-- **Appropriate sizing**: Readable text and touch-friendly buttons
-- **Performance optimized**: Fast loading and smooth animations
-- **Cross-device consistency**: Same experience across platforms
-
-## Analytics and Tracking
-
-### Automatic Event Tracking
-
-When a visitor clicks an impression button, the system automatically:
-
-- **Sends analytics event** with type `Impression` and value `CLICKED`
-- **Records belief data** including `beliefId` (impression ID) and `paneId`
-- **Tracks session information** for visitor behavior analysis
-- **Integrates with site analytics** for comprehensive reporting
-
-### Performance Metrics
-
-**Key impression metrics:**
-
-- **View rates**: How often impressions become visible to visitors
-- **Click rates**: Percentage of visitors who engage with impressions
-- **Conversion tracking**: Follow-through on impression actions
-- **Content correlation**: Which panes trigger the most valuable impressions
-
-### Optimization Insights
-
-**Data-driven improvements:**
-
-- **A/B testing**: Compare different impression content and placement
-- **Timing optimization**: Find optimal moments for impression display
-- **Content effectiveness**: Identify most compelling messaging
-- **Navigation analysis**: Track where impressions lead visitors
+- _Insight:_ "They read the 'Enterprise Security' pane, saw the 'Book a Demo' impression, and clicked."
+- _Result:_ You know exactly which paragraph of your copy is closing the deal.
 
 ## Best Practices
 
-### Content Strategy
+**Don't Spam.**
+Just because you _can_ attach an Impression to every Pane doesn't mean you should.
 
-**Impression content guidelines:**
+**Be Contextual.**
 
-- **Keep it relevant**: Impressions should relate to viewed content
-- **Clear value exchange**: Explain why visitors should click
-- **Compelling calls-to-action**: Use action-oriented button text
-- **Contextual messaging**: Adapt content to visitor journey stage
+- **Bad:** Showing a "Contact Us" impression on every page.
+- **Good:** Showing a "Download the Specs" impression only when they scroll to the "Technical Architecture" pane.
 
-### Timing and Frequency
-
-**Strategic implementation:**
-
-- **Strategic pane attachment**: Connect to high-value content sections
-- **Avoid overwhelm**: Don't activate too many impressions simultaneously
-- **Test engagement patterns**: Monitor analytics to optimize impression performance
-- **Respect visitor intent**: Allow easy dismissal and non-participation
-
-### Technical Considerations
-
-**Performance optimization:**
-
-- **Lightweight implementation**: Minimal impact on page load times
-- **Efficient tracking**: Streamlined analytics integration
-- **Responsive design**: Consistent experience across devices
-- **Accessibility**: Screen reader and keyboard navigation support
-
-## Integration with Belief System
-
-### Belief-Aware Impressions
-
-Impressions can integrate with the belief system for enhanced targeting:
-
-- **Belief-triggered impressions**: Different impressions for different visitor personas
-- **Progressive messaging**: Build on previously captured beliefs
-- **Contextual relevance**: Show impressions based on declared preferences
-
-### Analytics Enhancement
-
-**Belief-enhanced tracking:**
-
-- **Visitor segmentation**: Analyze impression performance by belief categories
-- **Personalization effectiveness**: Compare generic vs targeted impressions
-- **Journey optimization**: Understand how beliefs affect impression engagement
+**The Golden Rule:**
+Only tap them on the shoulder if you have something to give them.
 
 ---
 
-_Impressions provide a powerful way to create contextual, non-disruptive calls-to-action that respond intelligently to visitor behavior and content engagement patterns while respecting user agency and choice._
+_The "Free Web" Press by At Risk Media_

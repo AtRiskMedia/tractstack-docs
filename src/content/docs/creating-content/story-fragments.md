@@ -1,220 +1,101 @@
 ---
 title: Story Fragments
-description: Creating and managing web pages in TractStack
+description: Building the non-linear narrative in Tract Stack
 ---
 
-Story fragments are the main web pages of your TractStack site. Unlike traditional static pages, story fragments can adapt and reveal content based on visitor interactions and declared beliefs.
+Story Fragments are the atoms of your Brand Universe.
 
-## Understanding Story Fragments
+In the "Old Web", you built static **Pages** - rigid documents that looked the same to everyone. In Tract Stack, you build **Story Fragments** - adaptive scenes that listen, react, and change based on who is watching.
 
-### Core Concept
+## The Philosophy: The Non-Linear Web
 
-Think of each webpage not as a self-contained unit, but as a **story fragment** - a piece of a larger narrative that visitors will encounter in their own unique sequence. Unlike traditional linear storytelling, your website's corpus is more like a dynamic collection of interconnected moments, each fragment holding the potential to spark interest and lead to deeper exploration.
+Your users do not read your site like a book (Page 1 → Page 2). They jump. They skim. They arrive from a Google search, a tweet, or a dark social link.
 
-### URL Structure
+**A Story Fragment is a self-contained beat of your narrative.** It is designed to be encountered in any order, yet smart enough to know where the user came from and what they believe.
 
-A story fragment has a `slug` which becomes its URL: `/slug`. This is important for the analytics out-of-the-box experience. When building your TractStack, give each story fragment a descriptive and meaningful `slug`.
+### The URL (The Hook)
 
-## Creating Story Fragments
+Every Story Fragment has a `slug` (e.g., `/pricing` or `/mission`). While the experience is fluid, the address is concrete. This ensures that your "fluid" narrative still has a solid anchor for SEO and sharing.
 
-### Basic Creation Process
+## Creating a Fragment (The Director's Chair)
 
-1. **Access creation**: Navigate to Content section → "Create New" → "Web Page (Story Fragment)"
+When you create a Story Fragment, you are not writing a document. You are staging a scene.
 
-2. **Basic information**:
-   - **Title**: Page headline and browser title
-   - **Slug**: URL-friendly identifier (auto-generated from title, but editable)
-   - **Description**: Brief page description for SEO
+1. **Access Creation**: Navigate to Content → "Create New" → "Web Page (Story Fragment)".
+2. **The Metadata**:
+   - **Title**: The headline of the scene.
+   - **Slug**: The entry point (auto-generated but editable).
+   - **Description**: The "trailer" for search engines (SEO).
+3. **The Staging**: Add **Panes** to build the flow.
 
-3. **Content structure**: Add and organize panes (content sections)
+### The Anatomy of a Fragment: Panes
 
-4. **Publishing**: Save as draft or publish immediately
+A Fragment is composed of **Panes**.
+Think of a Pane not just as a "block of text," but as a **Sensor**.
 
-### Page Structure
+- **Text Panes**: The dialogue.
+- **Media Panes**: The visual context.
+- **Interactive Panes**: The "Handshake" (Buttons, Forms, Belief Widgets).
+- **Code Hooks**: Custom functionality for the bespoke builder.
 
-Story fragments are built from **panes** - individual content sections that can:
+**Pro Tip:** Don't build wall-to-wall text. Build one Pane at a time. Each Pane acts as a distinct listening device for our Signal Analytics.
 
-- Contain different types of content (text, images, interactive elements)
-- Be shown or hidden based on visitor beliefs
-- Have individual analytics tracking
-- Trigger personalization rules
+## Hidden Doors (Belief-Driven Content)
 
-## Content Panes
-
-### Pane Types
-
-**Text panes**: Rich text content with formatting options
-**Image panes**: Media content with responsive sizing
-**Interactive panes**: Belief widgets, buttons, forms
-**Custom panes**: Code hooks for specialized functionality
-
-### Pane Organization
-
-- **Visual editor**: Drag-and-drop pane arrangement
-- **Nested structures**: Complex layouts and content organization
-- **Responsive preview**: See how content appears on different devices
-
-## Belief-Driven Content
+This is the engine of the **Mass-Produced Handshake**.
+You can configure any Pane to act as a **Hidden Door** - content that is invisible by default and only reveals itself when the user signals intent.
 
 ### Visibility Rules
 
-Panes can be configured with belief-based visibility:
+You don't need code to do this. You simply set the conditions:
 
-**Held Beliefs (Show Conditions)**:
+**1. The Invite (Show Conditions)**
 
-- `UseCase=Developer` → Shows developer-specific content
-- `Interest=BELIEVES_YES` → Reveals detailed information
-- `Experience=Advanced` → Displays technical content
+- `Interest=BELIEVES_YES` → The user admitted they are interested. **Open the door.**
+- `Role=Developer` → The user identified as technical. **Show the API docs.**
 
-**Withheld Beliefs (Hide Conditions)**:
+**2. The Filter (Hide Conditions)**
 
-- `Experience=Beginner` → Hides advanced content
-- `Budget=Limited` → Hides premium features
+- `Experience=Beginner` → **Hide** the complex jargon.
+- `Budget=Student` → **Hide** the Enterprise pricing plan.
 
 ### Progressive Disclosure
 
-Story fragments enable **progressive disclosure** where:
+This allows you to pack a single Story Fragment with deep value without overwhelming the visitor. The page grows as the relationship deepens.
 
-1. Visitors see default content initially
-2. Content reveals based on declared preferences
-3. Personalized journey unfolds without page refreshes
-4. Experience becomes more relevant over time
+1. **The Visit**: User sees the "Lobby" (Default content).
+2. **The Signal**: User interacts with a widget.
+3. **The Reveal**: The Fragment adapts instantly via HTMX, opening the Hidden Door.
 
-## Analytics Integration
+## Signal Analytics (Listening)
 
-### Automatic Tracking
+Because Tract Stack is server-side, we don't just track "Hits." We track **Attention**.
+Every Story Fragment automatically captures the pulse of the reader:
 
-Every story fragment automatically tracks:
+- `PAGEVIEWED`: They entered the room.
+- `ENTERED`: They scrolled to a specific Pane.
+- `READ`: They stopped to listen (High dwell time).
+- `CLICKED`: They shook your hand (Interaction).
+- `GLOSSED`: They ignored it. (This tells you to rewrite the scene).
 
-- `PAGEVIEWED`: When visitor loads the page
-- `ENTERED`: When visitor reaches specific panes
-- `READ`: Extended engagement with content sections
-- `CLICKED`: Interactions with elements
-- Belief widget interactions
+## SEO: Concrete in a Fluid World
 
-### Performance Metrics
+You might worry: _If the content is dynamic, can Google see it?_
+**Yes.**
 
-**Page-level analytics**:
+Tract Stack uses **Semantic Integrity**. Even though the experience is adaptive for the human, the underlying structure is extracted as clean, concrete Markdown for the bot.
 
-- Total page views
-- Unique visitors
-- Average time on page
-- Bounce rate
+- **Meta Tags**: Auto-generated or custom-defined.
+- **Open Graph**: Optimized for social sharing (Twitter/LinkedIn).
+- **Schema**: Structured data baked in.
 
-**Pane-level analytics**:
+## Content Strategy: Designing the Journey
 
-- Section engagement rates
-- Content completion rates
-- Interaction patterns
+Don't just fill boxes. **Design the Signal.**
 
-## SEO and Social Sharing
+### The "Ask" (Widget Placement)
 
-### Meta Data
+Where do you put the **Belief Widget**?
 
-Each story fragment includes:
-
-- **Title tag**: Browser and search engine title
-- **Meta description**: Search result snippet
-- **Open graph**: Social media sharing optimization
-- **Schema markup**: Structured data for search engines
-
-### Social Image Configuration
-
-- Upload custom social sharing images
-- Automatic generation from page content
-- Platform-specific optimization (Twitter, Facebook, LinkedIn)
-
-## Content Strategy
-
-### Planning Story Fragments
-
-**Consider the user journey**:
-
-- What brings visitors to this page?
-- What beliefs might they declare here?
-- Where should they go next?
-- What actions do you want them to take?
-
-**Content organization**:
-
-- Start with core information visible to everyone
-- Add belief-driven content for personalization
-- Include clear calls-to-action
-- Provide paths to related content
-
-### Belief Widget Integration
-
-**Strategic placement**:
-
-- Early in content to enable personalization
-- Natural points in user journey
-- Clear value proposition for sharing preferences
-
-**Widget types available**:
-
-- **Belief Widget**: Dropdown scales (Yes/No, Agree/Disagree, Likert)
-- **Toggle Belief Widget**: Simple binary choices
-- **Identify As Widget**: Persona-based selection
-
-## Mobile Optimization
-
-### Responsive Design
-
-Story fragments automatically adapt for:
-
-- **Mobile devices**: Touch-optimized interface
-- **Tablet displays**: Medium-screen optimization
-- **Desktop**: Full-featured experience
-- **Various orientations**: Portrait and landscape
-
-### Performance Considerations
-
-- **Image optimization**: Automatic compression and format selection
-- **Content prioritization**: Critical content loads first
-- **Interaction optimization**: Touch-friendly belief widgets
-
-## Content Relationships
-
-### Linking Strategy
-
-**Internal linking**:
-
-- Link to related story fragments
-- Reference context pages for detailed information
-- Create content series and collections
-
-**Navigation integration**:
-
-- Include in main site navigation
-- Create contextual navigation paths
-- Implement breadcrumb trails
-
-### Content Collections
-
-- **Series**: Sequential story fragments
-- **Topics**: Thematically related content
-- **User journeys**: Belief-driven content paths
-
-## Publishing and Workflow
-
-### Publishing States
-
-**Draft**: Work in progress, not visible to visitors
-**Published**: Live on website and accessible via URL
-**Archived**: Removed from active site but preserved
-
-### Content Updates
-
-- **Live editing**: Changes appear immediately on published pages
-- **Preview mode**: Test content before publishing
-- **Revision tracking**: See change history
-
-### Team Collaboration
-
-- **Role-based editing**: Admin and Editor access levels
-- **Concurrent editing**: Multiple team members can work simultaneously
-- **Content review**: Collaborative editing and approval process
-
----
-
-_Story fragments form the foundation of your TractStack site's adaptive content strategy. Each fragment should serve both individual visitor needs and contribute to the overall narrative journey._
+- **The Hook**: Place it early to let them define their journey immediately.
+- **The Bridge**:
